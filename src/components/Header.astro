@@ -43,13 +43,23 @@ const isActiveLink = (href: string) => {
 					{
 						navLinks.map((link) => (
 							<li class={link.children ? 'site-nav__item site-nav__item--has-dropdown' : 'site-nav__item'}>
-								<a
-									class={isActiveLink(link.href) ? 'site-nav__link site-nav__link--active' : 'site-nav__link'}
-									href={link.href}
-									aria-current={isActiveLink(link.href) ? 'page' : undefined}
-								>
-									{link.label}
-								</a>
+								{link.children ? (
+									<button
+										class={isActiveLink(link.href) ? 'site-nav__link site-nav__link--active site-nav__trigger' : 'site-nav__link site-nav__trigger'}
+										type="button"
+										aria-expanded="false"
+									>
+										{link.label}
+									</button>
+								) : (
+									<a
+										class={isActiveLink(link.href) ? 'site-nav__link site-nav__link--active' : 'site-nav__link'}
+										href={link.href}
+										aria-current={isActiveLink(link.href) ? 'page' : undefined}
+									>
+										{link.label}
+									</a>
+								)}
 								{link.children && (
 									<ul class="site-nav__dropdown" aria-label={`${link.label} submenu`}>
 										{link.children.map((child) => (

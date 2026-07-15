@@ -1,7 +1,59 @@
 ---
+import HomeServiceCard from '../components/HomeServiceCard.astro';
+import HomeTestimonial from '../components/HomeTestimonial.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import contactDogImage from '../assets/home/pexels-helenalopes-27176300.webp';
 import '../styles/home.css';
+
+const homeServiceText =
+	'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+
+const serviceCards = [
+	{
+		title: 'Service Title One',
+		text: homeServiceText,
+		href: '/services/virtual-training',
+		buttonText: 'Virtual Training',
+	},
+	{
+		title: 'Service Title Two',
+		text: homeServiceText,
+		href: '/services/virtual-training',
+		buttonText: 'Virtual Training',
+	},
+	{
+		title: 'Call To Action Three',
+		text: homeServiceText,
+		href: '/contact',
+		buttonText: 'Get Started &rarr;',
+	},
+];
+
+const testimonials = [
+	{
+		imageSrc: '/images/home/stylish-girl-sunny-field-with-dog.webp',
+		imageAlt: 'Client sitting with a dog in a sunny field.',
+		quote:
+			'Our walks are calmer, our routines make sense, and our dog is finally able to settle when guests come over.',
+		cite: '- Megan & Scout',
+	},
+	{
+		imageSrc: contactDogImage.src,
+		width: contactDogImage.width,
+		height: contactDogImage.height,
+		imageAlt: 'Client holding a brown dog.',
+		quote:
+			'The training felt practical and kind. We left each session with clear steps that worked in real life.',
+		cite: '- Jordan & Maple',
+	},
+	{
+		imageSrc: '/images/home/jack-russel-terrier-puppy-2W8VNP6.webp',
+		imageAlt: 'Small puppy resting on a soft blanket.',
+		quote:
+			'We finally understand what our puppy needs from us. The progress at home has been steady and noticeable.',
+		cite: '- Priya & Finn',
+	},
+];
 ---
 
 <SiteLayout
@@ -55,41 +107,7 @@ import '../styles/home.css';
 
 	<section class="home-services" aria-label="Training options">
 		<div class="home-services__cards">
-			<article class="home-service-card">
-				<img
-					class="home-service-card__icon"
-					src="/images/general/Paw.webp"
-					alt=""
-					loading="lazy"
-					decoding="async"
-				/>
-				<h2>Service Title Two</h2>
-				<p>
-					Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-					culpa qui officia deserunt mollit anim id est laborum.
-				</p>
-				<a class="button-link home-service-card__button" href="/services/virtual-training">
-					Virtual Training
-				</a>
-			</article>
-
-			<article class="home-service-card">
-				<img
-					class="home-service-card__icon"
-					src="/images/general/Paw.webp"
-					alt=""
-					loading="lazy"
-					decoding="async"
-				/>
-				<h2>Call To Action Three</h2>
-				<p>
-					Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-					culpa qui officia deserunt mollit anim id est laborum.
-				</p>
-				<a class="button-link home-service-card__button" href="/contact">Get Started &rarr;</a>
-			</article>
+			{serviceCards.map((card) => <HomeServiceCard {...card} />)}
 		</div>
 	</section>
 
@@ -151,67 +169,7 @@ import '../styles/home.css';
 
 	<section class="home-testimonials" aria-label="Client testimonials">
 		<div class="home-testimonials__track" id="home-testimonials-track">
-			<article class="home-testimonial">
-				<img
-					class="home-testimonial__image"
-					src="/images/home/stylish-girl-sunny-field-with-dog.webp"
-					alt="Client sitting with a dog in a sunny field."
-					loading="lazy"
-					decoding="async"
-				/>
-				<div class="home-testimonial__quote">
-					<p class="home-testimonial__stars" aria-label="5 out of 5 stars">★★★★★</p>
-					<blockquote>
-						<p>
-							Our walks are calmer, our routines make sense, and our dog is finally able
-							to settle when guests come over.
-						</p>
-						<cite>- Megan &amp; Scout</cite>
-					</blockquote>
-				</div>
-			</article>
-
-			<article class="home-testimonial">
-				<img
-					class="home-testimonial__image"
-					src={contactDogImage.src}
-					width={contactDogImage.width}
-					height={contactDogImage.height}
-					alt="Client holding a brown dog."
-					loading="lazy"
-					decoding="async"
-				/>
-				<div class="home-testimonial__quote">
-					<p class="home-testimonial__stars" aria-label="5 out of 5 stars">★★★★★</p>
-					<blockquote>
-						<p>
-							The training felt practical and kind. We left each session with clear steps
-							that worked in real life.
-						</p>
-						<cite>- Jordan &amp; Maple</cite>
-					</blockquote>
-				</div>
-			</article>
-
-			<article class="home-testimonial">
-				<img
-					class="home-testimonial__image"
-					src="/images/home/jack-russel-terrier-puppy-2W8VNP6.webp"
-					alt="Small puppy resting on a soft blanket."
-					loading="lazy"
-					decoding="async"
-				/>
-				<div class="home-testimonial__quote">
-					<p class="home-testimonial__stars" aria-label="5 out of 5 stars">★★★★★</p>
-					<blockquote>
-						<p>
-							We finally understand what our puppy needs from us. The progress at home has
-							been steady and noticeable.
-						</p>
-						<cite>- Priya &amp; Finn</cite>
-					</blockquote>
-				</div>
-			</article>
+			{testimonials.map((testimonial) => <HomeTestimonial {...testimonial} />)}
 		</div>
 
 		<div class="home-testimonials__controls" aria-label="Testimonial controls">

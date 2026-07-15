@@ -32,18 +32,18 @@
 	height: 100%;
 	padding: clamp(2.4rem, 4.5vw, 4rem);
 	background:
-		linear-gradient(90deg, rgba(31, 34, 32, 0.5) 0%, rgba(31, 34, 32, 0.28) 48%, rgba(31, 34, 32, 0.12) 100%),
-		rgba(31, 34, 32, 0.16);
+		linear-gradient(90deg, rgb(var(--color-overlay-dark-rgb) / 0.5) 0%, rgb(var(--color-overlay-dark-rgb) / 0.28) 48%, rgb(var(--color-overlay-dark-rgb) / 0.12) 100%),
+		rgb(var(--color-overlay-dark-rgb) / 0.16);
 }
 
 .faq-hero__content {
 	max-width: 48rem;
-	color: #ffffff;
+	color: var(--color-white);
 }
 
 .faq-hero p {
 	margin: 0 0 clamp(1.5rem, 2.8vw, 2.4rem);
-	color: rgba(255, 255, 255, 0.82);
+	color: var(--color-white-copy-strong);
 	font-family: var(--font-ui);
 	font-size: clamp(0.82rem, 1vw, 0.95rem);
 	font-weight: 500;
@@ -54,7 +54,7 @@
 
 .faq-hero h1 {
 	margin: 0;
-	color: #ffffff;
+	color: var(--color-white);
 	font-size: clamp(3.2rem, 5.5vw, 5.4rem);
 	font-weight: 300;
 	line-height: 1.14;
@@ -73,9 +73,9 @@
 }
 
 .faq-item {
-	border: 1px solid rgba(97, 102, 110, 0.34);
+	border: 1px solid rgb(var(--color-ink-rgb) / 0.34);
 	border-radius: 0.6rem;
-	background: rgba(255, 255, 255, 0.72);
+	background: rgb(var(--color-white-rgb) / 0.72);
 	color: var(--color-ink);
 }
 
@@ -129,101 +129,6 @@
 	line-height: 1.62;
 }
 
-.faq-cta {
-	width: 100%;
-	margin-top: clamp(3.5rem, 6vw, 5.5rem);
-	padding: clamp(3rem, 5vw, 4.8rem) var(--site-gutter);
-	background: #9aa8a0;
-}
-
-.faq-cta__frame {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: min(100%, var(--page-max-width));
-	min-height: clamp(23rem, 34vw, 31rem);
-	margin: 0 auto;
-	overflow: hidden;
-	border-radius: 0.7rem;
-}
-
-.faq-cta__image {
-	position: absolute;
-	inset: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	object-position: center 52%;
-}
-
-.faq-cta__overlay {
-	position: relative;
-	z-index: 1;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	min-height: inherit;
-	padding: clamp(2rem, 4vw, 3.4rem);
-	background: rgba(22, 27, 22, 0.42);
-	color: #ffffff;
-	text-align: center;
-}
-
-.faq-cta p {
-	margin: 0 0 clamp(1.3rem, 2.4vw, 2rem);
-	color: rgba(255, 255, 255, 0.74);
-	font-family: var(--font-ui);
-	font-size: clamp(0.78rem, 0.95vw, 0.9rem);
-	font-weight: 600;
-	letter-spacing: 0.24em;
-	line-height: 1.2;
-	text-transform: uppercase;
-}
-
-.faq-cta h2 {
-	max-width: 64rem;
-	margin: 0;
-	color: #ffffff;
-	font-size: clamp(2rem, 3.25vw, 3.05rem);
-	font-weight: 300;
-	line-height: 1.22;
-	letter-spacing: 0;
-}
-
-.faq-cta__button {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	min-width: clamp(9.5rem, 14vw, 13rem);
-	min-height: clamp(2.8rem, 4vw, 3.6rem);
-	margin-top: clamp(1rem, 2vw, 1.5rem);
-	padding: 0.7rem 1.5rem;
-	border-radius: 0.55rem;
-	background: rgba(203, 216, 207, 0.92);
-	color: #ffffff;
-	font-family: var(--font-ui);
-	font-size: clamp(0.82rem, 1vw, 0.95rem);
-	font-weight: 500;
-	letter-spacing: 0.18em;
-	text-transform: uppercase;
-	transition:
-		background 180ms ease,
-		transform 180ms ease;
-}
-
-.faq-cta__button:hover,
-.faq-cta__button:focus-visible {
-	background: rgba(218, 228, 221, 0.98);
-	transform: translateY(-1px);
-}
-
-.site-main:has(.faq-cta) + .site-footer {
-	margin-top: 0;
-}
-
 @media (max-width: 960px) {
 	.faq-hero__frame {
 		min-height: 28rem;
@@ -242,13 +147,6 @@
 		width: min(100%, 46rem);
 	}
 
-	.faq-cta__frame {
-		min-height: 26rem;
-	}
-
-	.faq-cta h2 {
-		font-size: clamp(1.85rem, 4.8vw, 2.7rem);
-	}
 }
 
 @media (max-width: 640px) {
@@ -269,8 +167,8 @@
 	.faq-hero__overlay {
 		padding: 1.5rem;
 		background:
-			linear-gradient(180deg, rgba(31, 34, 32, 0.18) 0%, rgba(31, 34, 32, 0.58) 100%),
-			rgba(31, 34, 32, 0.18);
+			linear-gradient(180deg, rgb(var(--color-overlay-dark-rgb) / 0.18) 0%, rgb(var(--color-overlay-dark-rgb) / 0.58) 100%),
+			rgb(var(--color-overlay-dark-rgb) / 0.18);
 	}
 
 	.faq-hero p {
@@ -307,39 +205,4 @@
 		line-height: 1.65;
 	}
 
-	.faq-cta {
-		margin-top: 3rem;
-		padding: 2rem 1.1rem;
-	}
-
-	.faq-cta__frame {
-		min-height: 25rem;
-		border-radius: 0.6rem;
-	}
-
-	.faq-cta__image {
-		object-position: center center;
-	}
-
-	.faq-cta__overlay {
-		padding: 1.5rem;
-	}
-
-	.faq-cta p {
-		margin-bottom: 1rem;
-		font-size: 0.72rem;
-		letter-spacing: 0.2em;
-	}
-
-	.faq-cta h2 {
-		font-size: 1.65rem;
-		line-height: 1.26;
-	}
-
-	.faq-cta__button {
-		min-width: 8.5rem;
-		min-height: 2.75rem;
-		margin-top: 1rem;
-		font-size: 0.78rem;
-	}
 }

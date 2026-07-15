@@ -1,0 +1,41 @@
+---
+interface Props {
+	id: string;
+	title: string;
+	imageSrc?: string;
+	imageAlt?: string;
+	eyebrow?: string;
+	buttonHref?: string;
+	buttonText?: string;
+	flush?: boolean;
+}
+
+const {
+	id,
+	title,
+	imageSrc = '/images/services/pexels-jozef-feher-356581-10568857.webp',
+	imageAlt = 'Brown dog running through grass.',
+	eyebrow = "Let’s Get Started",
+	buttonHref = '/contact',
+	buttonText = 'Enroll Now',
+	flush = false,
+} = Astro.props;
+---
+
+<section class:list={['faq-cta', { 'faq-cta--flush': flush }]} aria-labelledby={id}>
+	<div class="faq-cta__frame">
+		<img
+			class="faq-cta__image"
+			src={imageSrc}
+			alt={imageAlt}
+			loading="lazy"
+			decoding="async"
+		/>
+
+		<div class="faq-cta__overlay">
+			<p>{eyebrow}</p>
+			<h2 id={id}>{title}</h2>
+			<a class="faq-cta__button" href={buttonHref}>{buttonText}</a>
+		</div>
+	</div>
+</section>

@@ -1,6 +1,30 @@
 ---
+import BlogPostCard from '../components/BlogPostCard.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import '../styles/blog.css';
+
+const posts = [
+	{
+		title: 'Sample Blog Post Two',
+		date: '4/9/26',
+		datetime: '2026-04-09',
+		excerpt:
+			'Ut non enim eleifend felis pretium feugiat. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.',
+		href: '/blog/sample-blog-post-two',
+		imageSrc: '/images/home/pexels-helenalopes-27176300.webp',
+		imageAlt: 'Brown dog resting with a person.',
+	},
+	{
+		title: 'Sample Blog Post One',
+		date: '4/1/26',
+		datetime: '2026-04-01',
+		excerpt:
+			'Ut non enim eleifend felis pretium feugiat. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.',
+		href: '/blog/sample-blog-post-one',
+		imageSrc: '/images/home/jack-russel-terrier-puppy-2W8VNP6.webp',
+		imageAlt: 'Jack Russell terrier puppy resting in white bedding.',
+	},
+];
 ---
 
 <SiteLayout
@@ -29,44 +53,6 @@ import '../styles/blog.css';
 	</section>
 
 	<section class="blog-posts" aria-label="Blog posts">
-		<article class="blog-post-card">
-			<img
-				class="blog-post-card__image"
-				src="/images/home/pexels-helenalopes-27176300.webp"
-				alt="Brown dog resting with a person."
-				loading="lazy"
-				decoding="async"
-			/>
-
-			<div class="blog-post-card__content">
-				<time datetime="2026-04-09">4/9/26</time>
-				<h2>Sample Blog Post Two</h2>
-				<p>
-					Ut non enim eleifend felis pretium feugiat. Donec pede justo, fringilla vel,
-					aliquet nec, vulputate eget, arcu.
-				</p>
-				<a class="blog-post-card__button" href="/blog/sample-blog-post-two">Read More</a>
-			</div>
-		</article>
-
-		<article class="blog-post-card">
-			<img
-				class="blog-post-card__image"
-				src="/images/home/jack-russel-terrier-puppy-2W8VNP6.webp"
-				alt="Jack Russell terrier puppy resting in white bedding."
-				loading="lazy"
-				decoding="async"
-			/>
-
-			<div class="blog-post-card__content">
-				<time datetime="2026-04-01">4/1/26</time>
-				<h2>Sample Blog Post One</h2>
-				<p>
-					Ut non enim eleifend felis pretium feugiat. Donec pede justo, fringilla vel,
-					aliquet nec, vulputate eget, arcu.
-				</p>
-				<a class="blog-post-card__button" href="/blog/sample-blog-post-one">Read More</a>
-			</div>
-		</article>
+		{posts.map((post) => <BlogPostCard {...post} />)}
 	</section>
 </SiteLayout>

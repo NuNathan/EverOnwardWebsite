@@ -42,7 +42,7 @@
 .contact-hero__bar {
 	width: 100%;
 	height: clamp(2.1rem, 3.8vw, 3.35rem);
-	background: #9aa8a0;
+	background: var(--color-panel);
 }
 
 .contact-form-section {
@@ -53,7 +53,7 @@
 	width: 100%;
 	margin: 0;
 	padding: clamp(1.1rem, 2.2vw, 2rem) var(--site-gutter) clamp(3rem, 5vw, 4.6rem);
-	background: #9aa8a0;
+	background: var(--color-panel);
 }
 
 .contact-form-section__media,
@@ -92,7 +92,7 @@
 	align-items: center;
 	gap: clamp(1.3rem, 2.2vw, 2rem);
 	margin-top: clamp(4.4rem, 7vw, 6rem);
-	color: #ffffff;
+	color: var(--color-white);
 	text-align: center;
 }
 
@@ -112,7 +112,7 @@
 	flex-direction: column;
 	gap: clamp(1rem, 1.75vw, 1.45rem);
 	justify-self: start;
-	color: #ffffff;
+	color: var(--color-white);
 }
 
 .contact-form__fieldset {
@@ -128,7 +128,7 @@
 	font-size: clamp(0.88rem, 1vw, 0.98rem);
 	font-weight: 300;
 	line-height: 1.25;
-	color: #ffffff;
+	color: var(--color-white);
 }
 
 .contact-form__fieldset legend {
@@ -137,7 +137,7 @@
 
 .contact-form small {
 	margin-left: 0.4rem;
-	color: rgba(255, 255, 255, 0.62);
+	color: var(--color-white-muted);
 	font-size: 0.95em;
 }
 
@@ -152,7 +152,7 @@
 .contact-form select {
 	width: 100%;
 	border: 0;
-	background: rgba(244, 246, 242, 0.88);
+	background: var(--color-white-field);
 	color: var(--color-ink);
 	font: inherit;
 	font-size: 0.9rem;
@@ -175,8 +175,8 @@
 	border-radius: 999px;
 	appearance: none;
 	background-image:
-		linear-gradient(45deg, transparent 50%, rgba(255, 255, 255, 0.95) 50%),
-		linear-gradient(135deg, rgba(255, 255, 255, 0.95) 50%, transparent 50%);
+		linear-gradient(45deg, transparent 50%, var(--color-white-select-arrow) 50%),
+		linear-gradient(135deg, var(--color-white-select-arrow) 50%, transparent 50%);
 	background-position:
 		calc(100% - 1.55rem) 50%,
 		calc(100% - 1.15rem) 50%;
@@ -184,7 +184,7 @@
 		0.5rem 0.5rem,
 		0.5rem 0.5rem;
 	background-repeat: no-repeat;
-	color: rgba(97, 102, 110, 0.68);
+	color: rgb(var(--color-ink-rgb) / 0.68);
 }
 
 .contact-form textarea {
@@ -197,8 +197,8 @@
 .contact-form input:focus,
 .contact-form textarea:focus,
 .contact-form select:focus {
-	background: #ffffff;
-	outline-color: rgba(255, 255, 255, 0.9);
+	background: var(--color-white);
+	outline-color: var(--color-white-focus);
 }
 
 .contact-form__submit {
@@ -208,8 +208,8 @@
 	margin-top: clamp(0.35rem, 0.9vw, 0.75rem);
 	border: 0;
 	border-radius: 0.65rem;
-	background: rgba(203, 216, 207, 0.82);
-	color: #ffffff;
+	background: var(--color-accent-button-soft);
+	color: var(--color-white);
 	font-family: var(--font-ui);
 	font-size: clamp(0.82rem, 1vw, 0.95rem);
 	font-weight: 400;
@@ -223,7 +223,7 @@
 
 .contact-form__submit:hover,
 .contact-form__submit:focus-visible {
-	background: rgba(218, 228, 221, 0.95);
+	background: var(--color-accent-button-soft-hover);
 	transform: translateY(-1px);
 }
 

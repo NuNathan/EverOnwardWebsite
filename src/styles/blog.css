@@ -61,9 +61,9 @@
 	gap: clamp(3rem, 6vw, 5rem);
 	align-items: center;
 	padding: clamp(1.5rem, 2.4vw, 2rem);
-	border: 1px solid rgba(97, 102, 110, 0.65);
+	border: 1px solid var(--color-border-strong);
 	border-radius: 0.65rem;
-	background: rgba(255, 255, 255, 0.78);
+	background: rgb(var(--color-white-rgb) / 0.78);
 }
 
 .blog-post-card__image {
@@ -115,8 +115,8 @@
 	margin-top: clamp(2rem, 3.6vw, 3.2rem);
 	padding: 0.65rem 1.4rem;
 	border-radius: 0.35rem;
-	background: #9aa8a0;
-	color: #ffffff;
+	background: var(--color-panel);
+	color: var(--color-white);
 	font-size: clamp(0.95rem, 1.15vw, 1.08rem);
 	font-weight: 400;
 	line-height: 1;

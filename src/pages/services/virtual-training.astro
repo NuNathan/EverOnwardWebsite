@@ -1,6 +1,54 @@
 ---
+import AccordionItem from '../../components/AccordionItem.astro';
+import CtaBanner from '../../components/CtaBanner.astro';
+import VirtualProcessCard from '../../components/VirtualProcessCard.astro';
+import VirtualTestimonialCard from '../../components/VirtualTestimonialCard.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
+import '../../styles/cta.css';
 import '../../styles/virtual-training.css';
+
+const detailItems = [
+	{
+		summary: 'Who It’s For',
+		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem nec lectus facilisis porta.',
+	},
+	{
+		summary: 'What to Expect',
+		text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sessions are structured, practical, and tailored to your dog.',
+	},
+	{
+		summary: 'Investment',
+		text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+	},
+];
+
+const testimonials = [
+	{
+		quote:
+			'Porro dolor amet tetur velit modi tempora incidunt ut magnam alisuam ad mini veniam nostrum exercita tionem corporis suscipit nisi ut aliquid commo autem.',
+		author: '- John Smith, Calgary',
+	},
+	{
+		quote:
+			'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+		author: '- Jane Doe, Calgary',
+	},
+	{
+		quote:
+			'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+		author: '- Alex Taylor, Calgary',
+	},
+];
+
+const processSteps = [
+	'Step One',
+	'Step Two',
+	'Step Three',
+	'Step Four',
+].map((title) => ({
+	title,
+	text: 'Duis non quam et nisi tincidunt fermentum. Pellentesque habitant morbi tristique senectus et netus et malesuada.',
+}));
 ---
 
 <SiteLayout
@@ -80,35 +128,17 @@ import '../../styles/virtual-training.css';
 				</h2>
 
 				<div class="virtual-details__accordion" aria-label="Virtual training details">
-					<details class="virtual-detail-item">
-						<summary>Who It&rsquo;s For</summary>
-						<div class="virtual-detail-item__content">
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem
-								nec lectus facilisis porta.
-							</p>
-						</div>
-					</details>
-
-					<details class="virtual-detail-item">
-						<summary>What to Expect</summary>
-						<div class="virtual-detail-item__content">
-							<p>
-								Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sessions
-								are structured, practical, and tailored to your dog.
-							</p>
-						</div>
-					</details>
-
-					<details class="virtual-detail-item">
-						<summary>Investment</summary>
-						<div class="virtual-detail-item__content">
-							<p>
-								Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-								aliquip ex ea commodo consequat.
-							</p>
-						</div>
-					</details>
+					{
+						detailItems.map((item) => (
+							<AccordionItem
+								itemClass="virtual-detail-item"
+								contentClass="virtual-detail-item__content"
+								summary={item.summary}
+							>
+								<p>{item.text}</p>
+							</AccordionItem>
+						))
+					}
 				</div>
 			</div>
 
@@ -133,38 +163,11 @@ import '../../styles/virtual-training.css';
 
 		<div class="virtual-testimonials__viewport">
 			<div class="virtual-testimonials__track" data-virtual-testimonial-track>
-				<article class="virtual-testimonial-card">
-					<p class="virtual-testimonial-card__stars" aria-label="5 out of 5 stars">
-						&#9733;&#9733;&#9733;&#9733;&#9733;
-					</p>
-					<p>
-						Porro dolor amet tetur velit modi tempora incidunt ut magnam alisuam ad mini
-						veniam nostrum exercita tionem corporis suscipit nisi ut aliquid commo autem.
-					</p>
-					<footer>- John Smith, Calgary</footer>
-				</article>
-
-				<article class="virtual-testimonial-card">
-					<p class="virtual-testimonial-card__stars" aria-label="5 out of 5 stars">
-						&#9733;&#9733;&#9733;&#9733;&#9733;
-					</p>
-					<p>
-						Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-						fugiat nulla pariatur.
-					</p>
-					<footer>- Jane Doe, Calgary</footer>
-				</article>
-
-				<article class="virtual-testimonial-card">
-					<p class="virtual-testimonial-card__stars" aria-label="5 out of 5 stars">
-						&#9733;&#9733;&#9733;&#9733;&#9733;
-					</p>
-					<p>
-						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-						ex ea commodo consequat.
-					</p>
-					<footer>- Alex Taylor, Calgary</footer>
-				</article>
+				{
+					testimonials.map((testimonial) => (
+						<VirtualTestimonialCard quote={testimonial.quote} author={testimonial.author} />
+					))
+				}
 			</div>
 
 			<div class="virtual-testimonials__controls" aria-label="Testimonial controls">
@@ -237,62 +240,13 @@ import '../../styles/virtual-training.css';
 		</div>
 
 		<div class="virtual-process__steps" aria-label="Virtual training process steps">
-			<article class="virtual-process-card">
-				<img src="/images/general/Paw.webp" alt="" loading="lazy" decoding="async" />
-				<h3>Step One</h3>
-				<p>
-					Duis non quam et nisi tincidunt fermentum. Pellentesque habitant morbi tristique
-					senectus et netus et malesuada.
-				</p>
-			</article>
-
-			<article class="virtual-process-card">
-				<img src="/images/general/Paw.webp" alt="" loading="lazy" decoding="async" />
-				<h3>Step Two</h3>
-				<p>
-					Duis non quam et nisi tincidunt fermentum. Pellentesque habitant morbi tristique
-					senectus et netus et malesuada.
-				</p>
-			</article>
-
-			<article class="virtual-process-card">
-				<img src="/images/general/Paw.webp" alt="" loading="lazy" decoding="async" />
-				<h3>Step Three</h3>
-				<p>
-					Duis non quam et nisi tincidunt fermentum. Pellentesque habitant morbi tristique
-					senectus et netus et malesuada.
-				</p>
-			</article>
-
-			<article class="virtual-process-card">
-				<img src="/images/general/Paw.webp" alt="" loading="lazy" decoding="async" />
-				<h3>Step Four</h3>
-				<p>
-					Duis non quam et nisi tincidunt fermentum. Pellentesque habitant morbi tristique
-					senectus et netus et malesuada.
-				</p>
-			</article>
+			{processSteps.map((step) => <VirtualProcessCard title={step.title} text={step.text} />)}
 		</div>
 	</section>
 
-	<section class="faq-cta" aria-labelledby="virtual-cta-title">
-		<div class="faq-cta__frame">
-			<img
-				class="faq-cta__image"
-				src="/images/services/pexels-jozef-feher-356581-10568857.webp"
-				alt="Brown dog running through grass."
-				loading="lazy"
-				decoding="async"
-			/>
-
-			<div class="faq-cta__overlay">
-				<p>Let&rsquo;s Get Started</p>
-				<h2 id="virtual-cta-title">
-					Mauris vitae quam in justo dictum sodales. In eget tortor a nunc vehic. Donec et
-					urna vel risus feugiat pharetra. Proin id lacus.
-				</h2>
-				<a class="faq-cta__button" href="/contact">Enroll Now</a>
-			</div>
-		</div>
-	</section>
+	<CtaBanner
+		id="virtual-cta-title"
+		title="Mauris vitae quam in justo dictum sodales. In eget tortor a nunc vehic. Donec et urna vel risus feugiat pharetra. Proin id lacus."
+		flush
+	/>
 </SiteLayout>

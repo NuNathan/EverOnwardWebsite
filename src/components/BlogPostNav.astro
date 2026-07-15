@@ -1,0 +1,29 @@
+---
+interface Props {
+	olderHref?: string;
+	olderTitle?: string;
+	newerHref?: string;
+	newerTitle?: string;
+}
+
+const { olderHref, olderTitle, newerHref, newerTitle } = Astro.props;
+---
+
+<nav class="blog-post-nav" aria-label="Blog post navigation">
+	{
+		olderHref && olderTitle && (
+			<a class="blog-post-nav__link blog-post-nav__link--previous" href={olderHref}>
+				<span aria-hidden="true">&larr;</span>
+				<span>{olderTitle}</span>
+			</a>
+		)
+	}
+	{
+		newerHref && newerTitle && (
+			<a class="blog-post-nav__link blog-post-nav__link--next" href={newerHref}>
+				<span>{newerTitle}</span>
+				<span aria-hidden="true">&rarr;</span>
+			</a>
+		)
+	}
+</nav>

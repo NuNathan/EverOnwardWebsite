@@ -1,0 +1,14 @@
+---
+interface Props {
+	title: string;
+	text: string;
+}
+
+const { title, text } = Astro.props;
+---
+
+<article class="virtual-process-card">
+	<img src="/images/general/Paw.webp" alt="" loading="lazy" decoding="async" />
+	<h3>{title}</h3>
+	<p>{text}</p>
+</article>

@@ -5,8 +5,47 @@
 	--color-accent-light: #c5d5cb;
 	--color-beige: #e1d7c7;
 	--color-cloud: #eeebe8;
-	--color-footer-bg: var(--color-cloud);
-	--shadow-soft: 0 18px 48px rgba(63, 69, 80, 0.08);
+	--color-white: #ffffff;
+	--color-page-start: #fbfcf9;
+	--color-page-end: #fafaf8;
+	--color-surface-soft: #f7f8f6;
+	--color-surface-warm: #f2f2f1;
+	--color-panel: #9aa8a0;
+	--color-ink-strong: #1e232b;
+	--color-ink-deep: #505967;
+	--color-button-dark: #4e535d;
+	--color-button-dark-hover: #353a43;
+	--color-white-rgb: 255 255 255;
+	--color-ink-rgb: 97 102 110;
+	--color-page-end-rgb: 250 250 248;
+	--color-button-dark-hover-rgb: 65 68 76;
+	--color-shadow-rgb: 63 69 80;
+	--color-overlay-dark-rgb: 31 34 32;
+	--color-overlay-green-rgb: 51 55 48;
+	--color-cta-overlay-rgb: 22 27 22;
+	--color-header-bg: rgb(255 255 255 / 0.94);
+	--color-dropdown-border: rgb(97 102 110 / 0.24);
+	--color-border-soft: rgb(97 102 110 / 0.18);
+	--color-border-medium: rgb(97 102 110 / 0.32);
+	--color-border-strong: rgb(97 102 110 / 0.65);
+	--color-white-faint: rgb(255 255 255 / 0.08);
+	--color-white-soft: rgb(255 255 255 / 0.35);
+	--color-white-panel: rgb(255 255 255 / 0.78);
+	--color-white-card: rgb(255 255 255 / 0.94);
+	--color-white-solidish: rgb(255 255 255 / 0.96);
+	--color-white-field: rgb(255 255 255 / 0.88);
+	--color-white-select-arrow: rgb(255 255 255 / 0.95);
+	--color-white-focus: rgb(255 255 255 / 0.9);
+	--color-white-muted: rgb(255 255 255 / 0.62);
+	--color-white-copy: rgb(255 255 255 / 0.74);
+	--color-white-copy-strong: rgb(255 255 255 / 0.82);
+	--color-white-border: rgb(255 255 255 / 0.74);
+	--color-white-disabled: rgb(255 255 255 / 0.28);
+	--color-accent-button: rgb(203 216 207 / 0.92);
+	--color-accent-button-soft: rgb(203 216 207 / 0.82);
+	--color-accent-button-hover: rgb(218 228 221 / 0.98);
+	--color-accent-button-soft-hover: rgb(218 228 221 / 0.95);
+	--shadow-soft: 0 18px 48px rgb(var(--color-shadow-rgb) / 0.08);
 	--page-max-width: 1280px;
 	--site-gutter: clamp(1rem, 2vw, 2.5rem);
 	--section-space: clamp(2.5rem, 5vw, 5rem);
@@ -28,7 +67,12 @@ html {
 	overflow-x: hidden;
 	font-family: var(--font-sans);
 	color: var(--color-ink);
-	background: linear-gradient(180deg, #fbfcf9 0%, #ffffff 16%, #fafaf8 100%);
+	background: linear-gradient(
+		180deg,
+		var(--color-page-start) 0%,
+		var(--color-white) 16%,
+		var(--color-page-end) 100%
+	);
 }
 
 body {
@@ -72,7 +116,7 @@ a {
 	padding: 0.7rem 1.5rem;
 	border-radius: 0.6rem;
 	background: var(--color-accent);
-	color: #ffffff;
+	color: var(--color-white);
 	font-family: var(--font-ui);
 	text-transform: uppercase;
 	letter-spacing: 0.07em;

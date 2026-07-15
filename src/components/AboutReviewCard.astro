@@ -1,0 +1,25 @@
+---
+interface Props {
+	imageSrc: string;
+	imageAlt: string;
+	text: string;
+	meta: string;
+}
+
+const { imageSrc, imageAlt, text, meta } = Astro.props;
+---
+
+<article class="about-review-card">
+	<img
+		class="about-review-card__image"
+		src={imageSrc}
+		alt={imageAlt}
+		loading="lazy"
+		decoding="async"
+	/>
+
+	<div class="about-review-card__content">
+		<p>{text}</p>
+		<p class="about-review-card__meta">{meta}</p>
+	</div>
+</article>

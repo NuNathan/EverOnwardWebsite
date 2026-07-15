@@ -1,4 +1,6 @@
 ---
+import BlogArticle from '../../components/BlogArticle.astro';
+import BlogPostNav from '../../components/BlogPostNav.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import '../../styles/blog-post.css';
 ---
@@ -7,47 +9,31 @@ import '../../styles/blog-post.css';
 	title="Sample Blog Post One | Ever Onward Canine"
 	description="Sample blog post from Ever Onward Canine."
 >
-	<article class="blog-article">
-		<header class="blog-article__header">
-			<time datetime="2026-04-01">Apr 1</time>
-			<h1>Sample Blog Post One</h1>
-		</header>
+	<BlogArticle
+		title="Sample Blog Post One"
+		date="Apr 1"
+		datetime="2026-04-01"
+		imageSrc="/images/services/pexels-kampus-8734430.webp"
+		imageAlt="Dog sitting beside a person near the water."
+	>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+			ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+			ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+			reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+			sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+			est laborum.
+		</p>
 
-		<div class="blog-article__body">
-			<img
-				class="blog-article__image"
-				src="/images/services/pexels-kampus-8734430.webp"
-				alt="Dog sitting beside a person near the water."
-				loading="eager"
-				decoding="async"
-			/>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+			ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+			ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+			reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+			sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+			est laborum.
+		</p>
+	</BlogArticle>
 
-			<div class="blog-article__content">
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-					incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-					exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-					irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-					pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-					deserunt mollit anim id est laborum.
-				</p>
-
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-					incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-					exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-					irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-					pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-					deserunt mollit anim id est laborum.
-				</p>
-			</div>
-		</div>
-	</article>
-
-	<nav class="blog-post-nav" aria-label="Blog post navigation">
-		<a class="blog-post-nav__link blog-post-nav__link--next" href="/blog/sample-blog-post-two">
-			<span>Sample Blog Post Two</span>
-			<span aria-hidden="true">&rarr;</span>
-		</a>
-	</nav>
+	<BlogPostNav newerHref="/blog/sample-blog-post-two" newerTitle="Sample Blog Post Two" />
 </SiteLayout>

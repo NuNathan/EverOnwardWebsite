@@ -1,0 +1,32 @@
+---
+interface Props {
+	title: string;
+	date: string;
+	datetime: string;
+	imageSrc: string;
+	imageAlt: string;
+}
+
+const { title, date, datetime, imageSrc, imageAlt } = Astro.props;
+---
+
+<article class="blog-article">
+	<header class="blog-article__header">
+		<time datetime={datetime}>{date}</time>
+		<h1>{title}</h1>
+	</header>
+
+	<div class="blog-article__body">
+		<img
+			class="blog-article__image"
+			src={imageSrc}
+			alt={imageAlt}
+			loading="eager"
+			decoding="async"
+		/>
+
+		<div class="blog-article__content">
+			<slot />
+		</div>
+	</div>
+</article>

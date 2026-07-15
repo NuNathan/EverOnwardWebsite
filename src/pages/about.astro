@@ -1,6 +1,53 @@
 ---
+import AboutCtaCard from '../components/AboutCtaCard.astro';
+import AboutReviewCard from '../components/AboutReviewCard.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import '../styles/about.css';
+
+const reviewText =
+	'Porro dolor amet tetur velit modi tempora incidunt ut magnam alisuam ad mini veniam nostrum exercita tionem corporis suscipit nisi ut aliquid commo autem.';
+
+const reviewCards = [
+	{
+		imageSrc: '/images/about/cute-white-dog-sitting-autumn-park.webp',
+		imageAlt: 'Small white dog sitting in a park.',
+		text: reviewText,
+		meta: 'â˜…â˜…â˜…â˜…â˜… - Jane Doe, Calgary',
+	},
+	{
+		imageSrc: '/images/home/stylish-girl-sunny-field-with-dog.webp',
+		imageAlt: 'Person sitting with a dog near water.',
+		text: reviewText,
+		meta: 'â˜…â˜…â˜…â˜…â˜… - Jane Doe, Calgary',
+	},
+	{
+		imageSrc: '/images/home/jack-russel-terrier-puppy-2W8VNP6.webp',
+		imageAlt: 'Small puppy resting on a soft blanket.',
+		text: reviewText,
+		meta: 'â˜…â˜…â˜…â˜…â˜… - Jane Doe, Calgary',
+	},
+];
+
+const ctaCards = [
+	{
+		href: '/services',
+		label: 'View services',
+		title: 'Call To Action',
+		text: 'Duis non quam et nisi tincidunt fermentum ellentesque habit.',
+	},
+	{
+		href: '/contact',
+		label: 'Contact Ever Onward Canine',
+		title: 'Call To Action',
+		text: 'Duis non quam et nisi tincidunt fermentum ellentesque habit.',
+	},
+	{
+		href: '/blog',
+		label: 'Read the blog',
+		title: 'Call To Action',
+		text: 'Duis non quam et nisi tincidunt fe rm ent um ellentesque habit.',
+	},
+];
 ---
 
 <SiteLayout
@@ -69,59 +116,7 @@ import '../styles/about.css';
 
 	<section class="about-reviews" aria-label="Client reviews">
 		<div class="about-reviews__track" id="about-reviews-track">
-			<article class="about-review-card">
-				<img
-					class="about-review-card__image"
-					src="/images/about/cute-white-dog-sitting-autumn-park.webp"
-					alt="Small white dog sitting in a park."
-					loading="lazy"
-					decoding="async"
-				/>
-
-				<div class="about-review-card__content">
-					<p>
-						Porro dolor amet tetur velit modi tempora incidunt ut magnam alisuam ad mini
-						veniam nostrum exercita tionem corporis suscipit nisi ut aliquid commo autem.
-					</p>
-					<p class="about-review-card__meta">★★★★★ - Jane Doe, Calgary</p>
-				</div>
-			</article>
-
-			<article class="about-review-card">
-				<img
-					class="about-review-card__image"
-					src="/images/home/stylish-girl-sunny-field-with-dog.webp"
-					alt="Person sitting with a dog near water."
-					loading="lazy"
-					decoding="async"
-				/>
-
-				<div class="about-review-card__content">
-					<p>
-						Porro dolor amet tetur velit modi tempora incidunt ut magnam alisuam ad mini
-						veniam nostrum exercita tionem corporis suscipit nisi ut aliquid commo autem.
-					</p>
-					<p class="about-review-card__meta">★★★★★ - Jane Doe, Calgary</p>
-				</div>
-			</article>
-
-			<article class="about-review-card">
-				<img
-					class="about-review-card__image"
-					src="/images/home/jack-russel-terrier-puppy-2W8VNP6.webp"
-					alt="Small puppy resting on a soft blanket."
-					loading="lazy"
-					decoding="async"
-				/>
-
-				<div class="about-review-card__content">
-					<p>
-						Porro dolor amet tetur velit modi tempora incidunt ut magnam alisuam ad mini
-						veniam nostrum exercita tionem corporis suscipit nisi ut aliquid commo autem.
-					</p>
-					<p class="about-review-card__meta">★★★★★ - Jane Doe, Calgary</p>
-				</div>
-			</article>
+			{reviewCards.map((review) => <AboutReviewCard {...review} />)}
 		</div>
 
 		<div class="about-reviews__controls" aria-label="Review controls">
@@ -196,25 +191,7 @@ import '../styles/about.css';
 		/>
 
 		<div class="about-cta-band__cards">
-			<article class="about-cta-card">
-				<a class="about-cta-card__arrow" href="/services" aria-label="View services">&rarr;</a>
-				<h2>Call To Action</h2>
-				<p>Duis non quam et nisi tincidunt fermentum ellentesque habit.</p>
-			</article>
-
-			<article class="about-cta-card">
-				<a class="about-cta-card__arrow" href="/contact" aria-label="Contact Ever Onward Canine">
-					&rarr;
-				</a>
-				<h2>Call To Action</h2>
-				<p>Duis non quam et nisi tincidunt fermentum ellentesque habit.</p>
-			</article>
-
-			<article class="about-cta-card">
-				<a class="about-cta-card__arrow" href="/blog" aria-label="Read the blog">&rarr;</a>
-				<h2>Call To Action</h2>
-				<p>Duis non quam et nisi tincidunt fe rm ent um ellentesque habit.</p>
-			</article>
+			{ctaCards.map((card) => <AboutCtaCard {...card} />)}
 		</div>
 	</section>
 </SiteLayout>

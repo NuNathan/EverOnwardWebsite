@@ -1,0 +1,25 @@
+---
+interface Props {
+	title: string;
+	text: string;
+	href: string;
+	buttonText: string;
+}
+
+const { title, text, href, buttonText } = Astro.props;
+---
+
+<article class="home-service-card">
+	<img
+		class="home-service-card__icon"
+		src="/images/general/Paw.webp"
+		alt=""
+		loading="lazy"
+		decoding="async"
+	/>
+	<h2>{title}</h2>
+	<p>{text}</p>
+	<a class="button-link home-service-card__button" href={href}>
+		<Fragment set:html={buttonText} />
+	</a>
+</article>

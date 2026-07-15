@@ -1,0 +1,31 @@
+---
+interface Props {
+	imageSrc: string;
+	imageAlt: string;
+	quote: string;
+	cite: string;
+	width?: number;
+	height?: number;
+}
+
+const { imageSrc, imageAlt, quote, cite, width, height } = Astro.props;
+---
+
+<article class="home-testimonial">
+	<img
+		class="home-testimonial__image"
+		src={imageSrc}
+		width={width}
+		height={height}
+		alt={imageAlt}
+		loading="lazy"
+		decoding="async"
+	/>
+	<div class="home-testimonial__quote">
+		<p class="home-testimonial__stars" aria-label="5 out of 5 stars">â˜…â˜…â˜…â˜…â˜…</p>
+		<blockquote>
+			<p>{quote}</p>
+			<cite>{cite}</cite>
+		</blockquote>
+	</div>
+</article>
