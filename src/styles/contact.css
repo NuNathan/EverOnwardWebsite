@@ -1,0 +1,331 @@
+.contact-hero {
+	position: relative;
+	isolation: isolate;
+	display: grid;
+	grid-template-rows: 1fr auto;
+	width: 100%;
+	min-height: clamp(17rem, 30vw, 24rem);
+	overflow: hidden;
+}
+
+.contact-hero__image {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	object-fit: cover;
+	object-position: center center;
+}
+
+.contact-hero__content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: min(100%, var(--page-max-width));
+	margin: 0 auto;
+	padding: clamp(3rem, 5.2vw, 4.8rem) var(--site-gutter) clamp(3.1rem, 5.4vw, 4.7rem);
+	text-align: center;
+}
+
+.contact-hero h1 {
+	max-width: 58rem;
+	margin: 0;
+	color: var(--color-ink);
+	font-size: clamp(1.65rem, 2.45vw, 2.75rem);
+	font-weight: 300;
+	line-height: 1.22;
+	letter-spacing: 0;
+}
+
+.contact-hero__bar {
+	width: 100%;
+	height: clamp(2.1rem, 3.8vw, 3.35rem);
+	background: #9aa8a0;
+}
+
+.contact-form-section {
+	display: grid;
+	grid-template-columns: minmax(16rem, 0.75fr) minmax(0, 1.05fr);
+	gap: clamp(2.4rem, 4.6vw, 4.4rem);
+	align-items: start;
+	width: 100%;
+	margin: 0;
+	padding: clamp(1.1rem, 2.2vw, 2rem) var(--site-gutter) clamp(3rem, 5vw, 4.6rem);
+	background: #9aa8a0;
+}
+
+.contact-form-section__media,
+.contact-form {
+	width: min(100%, 42rem);
+}
+
+.contact-form-section__media {
+	justify-self: end;
+}
+
+.contact-form-section__image-wrap {
+	position: relative;
+}
+
+.contact-form-section__image {
+	width: 100%;
+	aspect-ratio: 1.3 / 1;
+	border-radius: 0.65rem;
+	object-fit: cover;
+	object-position: 62% center;
+}
+
+.contact-form-section__submark {
+	position: absolute;
+	left: 50%;
+	bottom: -3.55rem;
+	width: clamp(4.3rem, 7vw, 6rem);
+	height: auto;
+	transform: translateX(-50%);
+}
+
+.contact-form-section__details {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: clamp(1.3rem, 2.2vw, 2rem);
+	margin-top: clamp(4.4rem, 7vw, 6rem);
+	color: #ffffff;
+	text-align: center;
+}
+
+.contact-form-section__details p {
+	margin: 0;
+	font-size: clamp(0.95rem, 1.15vw, 1.08rem);
+	font-weight: 300;
+	line-height: 1.4;
+}
+
+.contact-form-section__details em {
+	font-style: italic;
+}
+
+.contact-form {
+	display: flex;
+	flex-direction: column;
+	gap: clamp(1rem, 1.75vw, 1.45rem);
+	justify-self: start;
+	color: #ffffff;
+}
+
+.contact-form__fieldset {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.contact-form__fieldset legend,
+.contact-form label span {
+	display: block;
+	margin: 0 0 0.42rem;
+	font-size: clamp(0.88rem, 1vw, 0.98rem);
+	font-weight: 300;
+	line-height: 1.25;
+	color: #ffffff;
+}
+
+.contact-form__fieldset legend {
+	margin-bottom: 0.75rem;
+}
+
+.contact-form small {
+	margin-left: 0.4rem;
+	color: rgba(255, 255, 255, 0.62);
+	font-size: 0.95em;
+}
+
+.contact-form__name-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: clamp(0.65rem, 1.2vw, 0.9rem);
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+	width: 100%;
+	border: 0;
+	background: rgba(244, 246, 242, 0.88);
+	color: var(--color-ink);
+	font: inherit;
+	font-size: 0.9rem;
+	outline: 2px solid transparent;
+	outline-offset: 3px;
+	transition:
+		background 180ms ease,
+		outline-color 180ms ease;
+}
+
+.contact-form input {
+	height: clamp(2.45rem, 3.25vw, 3rem);
+	padding: 0 1rem;
+	border-radius: 999px;
+}
+
+.contact-form select {
+	height: clamp(2.45rem, 3.25vw, 3rem);
+	padding: 0 3rem 0 1rem;
+	border-radius: 999px;
+	appearance: none;
+	background-image:
+		linear-gradient(45deg, transparent 50%, rgba(255, 255, 255, 0.95) 50%),
+		linear-gradient(135deg, rgba(255, 255, 255, 0.95) 50%, transparent 50%);
+	background-position:
+		calc(100% - 1.55rem) 50%,
+		calc(100% - 1.15rem) 50%;
+	background-size:
+		0.5rem 0.5rem,
+		0.5rem 0.5rem;
+	background-repeat: no-repeat;
+	color: rgba(97, 102, 110, 0.68);
+}
+
+.contact-form textarea {
+	min-height: clamp(5.4rem, 7vw, 6.75rem);
+	padding: 0.85rem 1rem;
+	border-radius: 1.2rem;
+	resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus {
+	background: #ffffff;
+	outline-color: rgba(255, 255, 255, 0.9);
+}
+
+.contact-form__submit {
+	align-self: flex-start;
+	min-width: clamp(8.5rem, 11vw, 10.5rem);
+	min-height: clamp(2.9rem, 3.6vw, 3.35rem);
+	margin-top: clamp(0.35rem, 0.9vw, 0.75rem);
+	border: 0;
+	border-radius: 0.65rem;
+	background: rgba(203, 216, 207, 0.82);
+	color: #ffffff;
+	font-family: var(--font-ui);
+	font-size: clamp(0.82rem, 1vw, 0.95rem);
+	font-weight: 400;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition:
+		background 180ms ease,
+		transform 180ms ease;
+}
+
+.contact-form__submit:hover,
+.contact-form__submit:focus-visible {
+	background: rgba(218, 228, 221, 0.95);
+	transform: translateY(-1px);
+}
+
+.site-main:has(.contact-form-section) + .site-footer {
+	margin-top: 0;
+}
+
+@media (max-width: 960px) {
+	.contact-hero {
+		min-height: 20rem;
+	}
+
+	.contact-hero h1 {
+		max-width: 44rem;
+		font-size: clamp(1.6rem, 4vw, 2.35rem);
+	}
+
+	.contact-form-section {
+		grid-template-columns: 1fr;
+		gap: 3.2rem;
+	}
+
+	.contact-form-section__media,
+	.contact-form {
+		width: min(100%, 34rem);
+		justify-self: center;
+	}
+}
+
+@media (max-width: 640px) {
+	.contact-hero {
+		min-height: 19rem;
+	}
+
+	.contact-hero__content {
+		padding: 2.5rem 1.1rem 2.8rem;
+	}
+
+	.contact-hero h1 {
+		font-size: 1.35rem;
+		line-height: 1.28;
+	}
+
+	.contact-hero__bar {
+		height: 2.35rem;
+	}
+
+	.contact-form-section {
+		gap: 2.7rem;
+		padding: 1rem 1.1rem 2.8rem;
+	}
+
+	.contact-form-section__image {
+		aspect-ratio: 1.08 / 1;
+		border-radius: 0.55rem;
+		object-position: 66% center;
+	}
+
+	.contact-form-section__submark {
+		bottom: -2.8rem;
+		width: 4.4rem;
+	}
+
+	.contact-form-section__details {
+		gap: 1.15rem;
+		margin-top: 3.5rem;
+	}
+
+	.contact-form-section__details p {
+		font-size: 0.9rem;
+	}
+
+	.contact-form {
+		gap: 1rem;
+	}
+
+	.contact-form__name-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.contact-form__fieldset legend,
+	.contact-form label span {
+		font-size: 0.86rem;
+	}
+
+	.contact-form input {
+		height: 2.65rem;
+	}
+
+	.contact-form select {
+		height: 2.65rem;
+	}
+
+	.contact-form textarea {
+		min-height: 6rem;
+		border-radius: 1rem;
+	}
+
+	.contact-form__submit {
+		min-width: 8.25rem;
+		min-height: 2.9rem;
+		border-radius: 0.65rem;
+		font-size: 0.82rem;
+	}
+}

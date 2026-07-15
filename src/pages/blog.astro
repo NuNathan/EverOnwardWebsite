@@ -1,0 +1,72 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import '../styles/blog.css';
+---
+
+<SiteLayout
+	title="Blog | Ever Onward Canine"
+	description="Read the Ever Onward Canine blog."
+>
+	<section class="blog-hero" aria-labelledby="blog-hero-title">
+		<img
+			class="blog-hero__image"
+			src="/images/general/AdobeStock_581231653.webp"
+			alt=""
+			loading="eager"
+			decoding="async"
+		/>
+
+		<div class="blog-hero__content">
+			<h1 id="blog-hero-title">The Blog</h1>
+			<img
+				class="blog-hero__paw"
+				src="/images/general/Paw.webp"
+				alt=""
+				loading="eager"
+				decoding="async"
+			/>
+		</div>
+	</section>
+
+	<section class="blog-posts" aria-label="Blog posts">
+		<article class="blog-post-card">
+			<img
+				class="blog-post-card__image"
+				src="/images/home/pexels-helenalopes-27176300.webp"
+				alt="Brown dog resting with a person."
+				loading="lazy"
+				decoding="async"
+			/>
+
+			<div class="blog-post-card__content">
+				<time datetime="2026-04-09">4/9/26</time>
+				<h2>Sample Blog Post Two</h2>
+				<p>
+					Ut non enim eleifend felis pretium feugiat. Donec pede justo, fringilla vel,
+					aliquet nec, vulputate eget, arcu.
+				</p>
+				<a class="blog-post-card__button" href="/blog/sample-blog-post-two">Read More</a>
+			</div>
+		</article>
+
+		<article class="blog-post-card">
+			<img
+				class="blog-post-card__image"
+				src="/images/home/jack-russel-terrier-puppy-2W8VNP6.webp"
+				alt="Jack Russell terrier puppy resting in white bedding."
+				loading="lazy"
+				decoding="async"
+			/>
+
+			<div class="blog-post-card__content">
+				<time datetime="2026-04-01">4/1/26</time>
+				<h2>Sample Blog Post One</h2>
+				<p>
+					Ut non enim eleifend felis pretium feugiat. Donec pede justo, fringilla vel,
+					aliquet nec, vulputate eget, arcu.
+				</p>
+				<a class="blog-post-card__button" href="/blog/sample-blog-post-one">Read More</a>
+			</div>
+		</article>
+	</section>
+</SiteLayout>

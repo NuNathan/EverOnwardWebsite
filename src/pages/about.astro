@@ -1,0 +1,220 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import '../styles/about.css';
+---
+
+<SiteLayout
+	title="About | Ever Onward Canine"
+	description="Learn more about Ever Onward Canine."
+>
+	<section class="about-hero" aria-label="About Ever Onward Canine">
+		<div class="about-hero__frame">
+			<img
+				class="about-hero__image"
+				src="/images/about/pexels-karola-g-5426875.webp"
+				alt="Husky resting beside a person on a sofa."
+				loading="eager"
+				decoding="async"
+			/>
+
+			<div class="about-hero__overlay">
+				<h1>Mauris vitae quam in justo dictum sodales. In eget tortor a nun.</h1>
+			</div>
+		</div>
+	</section>
+
+	<section class="about-founder" aria-labelledby="about-founder-title">
+		<div class="about-founder__media">
+			<div class="about-founder__image-frame">
+				<img
+					class="about-founder__image"
+					src="/images/about/pexels-monique-witlam-3233203-11454760.webp"
+					alt="Small black and white dog looking up."
+					loading="lazy"
+					decoding="async"
+				/>
+
+				<img
+					class="about-founder__submark"
+					src="/images/general/EOC-Submark-B-Mint.webp"
+					alt=""
+					loading="lazy"
+					decoding="async"
+				/>
+			</div>
+
+			<p class="about-founder__caption">include headshot</p>
+		</div>
+
+		<div class="about-founder__content">
+			<p class="about-founder__eyebrow">Meet Christina</p>
+			<h2 id="about-founder-title">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+				incididunt ut labore et dolore magna aliqua.
+			</h2>
+			<p>
+				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+				commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+				dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+				culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+			<p>
+				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+				commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+				dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+				culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+		</div>
+	</section>
+
+	<section class="about-reviews" aria-label="Client reviews">
+		<div class="about-reviews__track" id="about-reviews-track">
+			<article class="about-review-card">
+				<img
+					class="about-review-card__image"
+					src="/images/about/cute-white-dog-sitting-autumn-park.webp"
+					alt="Small white dog sitting in a park."
+					loading="lazy"
+					decoding="async"
+				/>
+
+				<div class="about-review-card__content">
+					<p>
+						Porro dolor amet tetur velit modi tempora incidunt ut magnam alisuam ad mini
+						veniam nostrum exercita tionem corporis suscipit nisi ut aliquid commo autem.
+					</p>
+					<p class="about-review-card__meta">★★★★★ - Jane Doe, Calgary</p>
+				</div>
+			</article>
+
+			<article class="about-review-card">
+				<img
+					class="about-review-card__image"
+					src="/images/home/stylish-girl-sunny-field-with-dog.webp"
+					alt="Person sitting with a dog near water."
+					loading="lazy"
+					decoding="async"
+				/>
+
+				<div class="about-review-card__content">
+					<p>
+						Porro dolor amet tetur velit modi tempora incidunt ut magnam alisuam ad mini
+						veniam nostrum exercita tionem corporis suscipit nisi ut aliquid commo autem.
+					</p>
+					<p class="about-review-card__meta">★★★★★ - Jane Doe, Calgary</p>
+				</div>
+			</article>
+
+			<article class="about-review-card">
+				<img
+					class="about-review-card__image"
+					src="/images/home/jack-russel-terrier-puppy-2W8VNP6.webp"
+					alt="Small puppy resting on a soft blanket."
+					loading="lazy"
+					decoding="async"
+				/>
+
+				<div class="about-review-card__content">
+					<p>
+						Porro dolor amet tetur velit modi tempora incidunt ut magnam alisuam ad mini
+						veniam nostrum exercita tionem corporis suscipit nisi ut aliquid commo autem.
+					</p>
+					<p class="about-review-card__meta">★★★★★ - Jane Doe, Calgary</p>
+				</div>
+			</article>
+		</div>
+
+		<div class="about-reviews__controls" aria-label="Review controls">
+			<button type="button" data-about-review-scroll="prev" aria-label="Previous review">
+				&larr;
+			</button>
+			<button type="button" data-about-review-scroll="next" aria-label="Next review">
+				&rarr;
+			</button>
+		</div>
+	</section>
+
+	<script>
+		const aboutReviewsTrack = document.querySelector('#about-reviews-track');
+		const aboutReviewButtons = document.querySelectorAll('[data-about-review-scroll]');
+
+		const getAboutReviewMaxScroll = () => {
+			if (!(aboutReviewsTrack instanceof HTMLElement)) return 0;
+
+			return Math.max(aboutReviewsTrack.scrollWidth - aboutReviewsTrack.clientWidth, 0);
+		};
+
+		const updateAboutReviewControls = () => {
+			if (!(aboutReviewsTrack instanceof HTMLElement)) return;
+
+			const maxScroll = getAboutReviewMaxScroll();
+			const atStart = aboutReviewsTrack.scrollLeft <= 1;
+			const atEnd = maxScroll - aboutReviewsTrack.scrollLeft <= 1;
+
+			aboutReviewButtons.forEach((button) => {
+				if (!(button instanceof HTMLButtonElement)) return;
+
+				const direction = button.getAttribute('data-about-review-scroll');
+				button.disabled = direction === 'prev' ? atStart : atEnd;
+			});
+		};
+
+		aboutReviewButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				if (!(aboutReviewsTrack instanceof HTMLElement)) return;
+				if (!(button instanceof HTMLButtonElement) || button.disabled) return;
+
+				const direction = button.getAttribute('data-about-review-scroll') === 'next' ? 1 : -1;
+				const distance = aboutReviewsTrack.clientWidth * 0.72;
+				const maxScroll = getAboutReviewMaxScroll();
+				const nextScroll = Math.min(
+					Math.max(aboutReviewsTrack.scrollLeft + distance * direction, 0),
+					maxScroll,
+				);
+
+				aboutReviewsTrack.scrollTo({
+					left: nextScroll,
+					behavior: 'smooth',
+				});
+			});
+		});
+
+		if (aboutReviewsTrack instanceof HTMLElement) {
+			aboutReviewsTrack.addEventListener('scroll', updateAboutReviewControls, { passive: true });
+			window.addEventListener('resize', updateAboutReviewControls);
+			updateAboutReviewControls();
+		}
+	</script>
+
+	<section class="about-cta-band" aria-label="Next steps">
+		<img
+			class="about-cta-band__image"
+			src="/images/about/cute-white-dog-sitting-autumn-park.webp"
+			alt="White dog sitting on an autumn path."
+			loading="lazy"
+			decoding="async"
+		/>
+
+		<div class="about-cta-band__cards">
+			<article class="about-cta-card">
+				<a class="about-cta-card__arrow" href="/services" aria-label="View services">&rarr;</a>
+				<h2>Call To Action</h2>
+				<p>Duis non quam et nisi tincidunt fermentum ellentesque habit.</p>
+			</article>
+
+			<article class="about-cta-card">
+				<a class="about-cta-card__arrow" href="/contact" aria-label="Contact Ever Onward Canine">
+					&rarr;
+				</a>
+				<h2>Call To Action</h2>
+				<p>Duis non quam et nisi tincidunt fermentum ellentesque habit.</p>
+			</article>
+
+			<article class="about-cta-card">
+				<a class="about-cta-card__arrow" href="/blog" aria-label="Read the blog">&rarr;</a>
+				<h2>Call To Action</h2>
+				<p>Duis non quam et nisi tincidunt fe rm ent um ellentesque habit.</p>
+			</article>
+		</div>
+	</section>
+</SiteLayout>

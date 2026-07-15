@@ -1,17 +1,315 @@
 ---
-
+import SiteLayout from '../layouts/SiteLayout.astro';
+import contactDogImage from '../assets/home/pexels-helenalopes-27176300.webp';
+import '../styles/home.css';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<SiteLayout
+	title="Ever Onward Canine"
+	description="Static site layout for Ever Onward Canine."
+>
+	<section class="home-hero" aria-label="Ever Onward Canine introduction">
+		<div class="home-hero__frame">
+			<img
+				class="home-hero__image"
+				src="/images/home/stylish-girl-sunny-field-with-dog.webp"
+				alt="Woman sitting with a dog in a sunny field."
+				loading="eager"
+				decoding="async"
+			/>
+
+			<div class="home-hero__overlay">
+				<div class="home-hero__content">
+					<p class="home-hero__eyebrow">- SUBHEADING GOES HERE</p>
+					<h1>Virtual training &amp; education for you &amp; your dog.</h1>
+					<div class="home-hero__actions">
+						<a class="button-link" href="/about">About Us &rarr;</a>
+					</div>
+				</div>
+
+				<img
+					class="home-hero__submark"
+					src="/images/general/Submark-B-White.webp"
+					alt=""
+					loading="lazy"
+					decoding="async"
+				/>
+			</div>
+		</div>
+	</section>
+
+	<section class="home-intro" aria-label="Ever Onward Canine overview">
+		<div class="home-intro__content">
+			<h2>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+				incididunt ut labore et dolore magna aliqua.
+			</h2>
+			<p>
+				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+				ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+				esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+		</div>
+	</section>
+
+	<section class="home-services" aria-label="Training options">
+		<div class="home-services__cards">
+			<article class="home-service-card">
+				<img
+					class="home-service-card__icon"
+					src="/images/general/Paw.webp"
+					alt=""
+					loading="lazy"
+					decoding="async"
+				/>
+				<h2>Service Title Two</h2>
+				<p>
+					Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+					culpa qui officia deserunt mollit anim id est laborum.
+				</p>
+				<a class="button-link home-service-card__button" href="/services/virtual-training">
+					Virtual Training
+				</a>
+			</article>
+
+			<article class="home-service-card">
+				<img
+					class="home-service-card__icon"
+					src="/images/general/Paw.webp"
+					alt=""
+					loading="lazy"
+					decoding="async"
+				/>
+				<h2>Call To Action Three</h2>
+				<p>
+					Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+					fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+					culpa qui officia deserunt mollit anim id est laborum.
+				</p>
+				<a class="button-link home-service-card__button" href="/contact">Get Started &rarr;</a>
+			</article>
+		</div>
+	</section>
+
+	<section class="home-contact" aria-labelledby="home-contact-title">
+		<div class="home-contact__inner">
+			<img
+				class="home-contact__image"
+				src={contactDogImage.src}
+				width={contactDogImage.width}
+				height={contactDogImage.height}
+				alt="Brown dog resting with a person."
+				loading="lazy"
+				decoding="async"
+			/>
+
+			<div class="home-contact__panel">
+				<div class="home-contact__intro">
+					<h2 id="home-contact-title">Ready to get started?</h2>
+					<p>
+						Fill out the contact form below and I&rsquo;ll be in touch within 48 hours. Be
+						sure to check your junk or spam folder just in case my reply lands there.
+					</p>
+					<p>
+						Have a quick question before reaching out? You might find your answer in the
+						<a href="/faqs">FAQs here</a>.
+					</p>
+				</div>
+
+				<form class="home-contact__form" action="/contact" method="post">
+					<fieldset class="home-contact__fieldset">
+						<legend>Name</legend>
+						<div class="home-contact__name-grid">
+							<label>
+								<span>First Name <small>(required)</small></span>
+								<input type="text" name="first-name" autocomplete="given-name" required />
+							</label>
+							<label>
+								<span>Last Name <small>(required)</small></span>
+								<input type="text" name="last-name" autocomplete="family-name" required />
+							</label>
+						</div>
+					</fieldset>
+
+					<label>
+						<span>Email <small>(required)</small></span>
+						<input type="email" name="email" autocomplete="email" required />
+					</label>
+
+					<label>
+						<span>Message <small>(required)</small></span>
+						<textarea name="message" rows="5" required></textarea>
+					</label>
+
+					<button class="button-link home-contact__submit" type="submit">Submit</button>
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<section class="home-testimonials" aria-label="Client testimonials">
+		<div class="home-testimonials__track" id="home-testimonials-track">
+			<article class="home-testimonial">
+				<img
+					class="home-testimonial__image"
+					src="/images/home/stylish-girl-sunny-field-with-dog.webp"
+					alt="Client sitting with a dog in a sunny field."
+					loading="lazy"
+					decoding="async"
+				/>
+				<div class="home-testimonial__quote">
+					<p class="home-testimonial__stars" aria-label="5 out of 5 stars">★★★★★</p>
+					<blockquote>
+						<p>
+							Our walks are calmer, our routines make sense, and our dog is finally able
+							to settle when guests come over.
+						</p>
+						<cite>- Megan &amp; Scout</cite>
+					</blockquote>
+				</div>
+			</article>
+
+			<article class="home-testimonial">
+				<img
+					class="home-testimonial__image"
+					src={contactDogImage.src}
+					width={contactDogImage.width}
+					height={contactDogImage.height}
+					alt="Client holding a brown dog."
+					loading="lazy"
+					decoding="async"
+				/>
+				<div class="home-testimonial__quote">
+					<p class="home-testimonial__stars" aria-label="5 out of 5 stars">★★★★★</p>
+					<blockquote>
+						<p>
+							The training felt practical and kind. We left each session with clear steps
+							that worked in real life.
+						</p>
+						<cite>- Jordan &amp; Maple</cite>
+					</blockquote>
+				</div>
+			</article>
+
+			<article class="home-testimonial">
+				<img
+					class="home-testimonial__image"
+					src="/images/home/jack-russel-terrier-puppy-2W8VNP6.webp"
+					alt="Small puppy resting on a soft blanket."
+					loading="lazy"
+					decoding="async"
+				/>
+				<div class="home-testimonial__quote">
+					<p class="home-testimonial__stars" aria-label="5 out of 5 stars">★★★★★</p>
+					<blockquote>
+						<p>
+							We finally understand what our puppy needs from us. The progress at home has
+							been steady and noticeable.
+						</p>
+						<cite>- Priya &amp; Finn</cite>
+					</blockquote>
+				</div>
+			</article>
+		</div>
+
+		<div class="home-testimonials__controls" aria-label="Testimonial controls">
+			<button type="button" data-testimonial-scroll="prev" aria-label="Previous testimonial">
+				&larr;
+			</button>
+			<button type="button" data-testimonial-scroll="next" aria-label="Next testimonial">
+				&rarr;
+			</button>
+		</div>
+	</section>
+
+	<script>
+		const testimonialTrack = document.querySelector('#home-testimonials-track');
+		const testimonialButtons = document.querySelectorAll('[data-testimonial-scroll]');
+
+		const getTestimonialMaxScroll = () => {
+			if (!(testimonialTrack instanceof HTMLElement)) return 0;
+
+			const lastTestimonial = testimonialTrack.lastElementChild;
+
+			if (!(lastTestimonial instanceof HTMLElement)) {
+				return Math.max(testimonialTrack.scrollWidth - testimonialTrack.clientWidth, 0);
+			}
+
+			return Math.max(
+				lastTestimonial.offsetLeft + lastTestimonial.offsetWidth - testimonialTrack.clientWidth,
+				0,
+			);
+		};
+
+		const getTestimonialEndThreshold = () => {
+			if (!(testimonialTrack instanceof HTMLElement)) return 1;
+
+			const firstTestimonial = testimonialTrack.firstElementChild;
+			const cardWidth =
+				firstTestimonial instanceof HTMLElement ? firstTestimonial.offsetWidth : testimonialTrack.clientWidth;
+
+			return Math.max(24, Math.min(testimonialTrack.clientWidth * 0.12, cardWidth * 0.25));
+		};
+
+		const updateTestimonialControls = () => {
+			if (!(testimonialTrack instanceof HTMLElement)) return;
+
+			const maxScroll = getTestimonialMaxScroll();
+			const endThreshold = getTestimonialEndThreshold();
+			const atStart = testimonialTrack.scrollLeft <= 1;
+			const atEnd = maxScroll - testimonialTrack.scrollLeft <= endThreshold;
+
+			testimonialButtons.forEach((button) => {
+				if (!(button instanceof HTMLButtonElement)) return;
+
+				const direction = button.getAttribute('data-testimonial-scroll');
+				button.disabled = direction === 'prev' ? atStart : atEnd;
+			});
+		};
+
+		testimonialButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				if (!(testimonialTrack instanceof HTMLElement)) return;
+				if (!(button instanceof HTMLButtonElement) || button.disabled) return;
+
+				const direction = button.getAttribute('data-testimonial-scroll') === 'next' ? 1 : -1;
+				const distance = testimonialTrack.clientWidth * 0.52;
+				const maxScroll = getTestimonialMaxScroll();
+				const endThreshold = getTestimonialEndThreshold();
+				const remainingScroll = maxScroll - testimonialTrack.scrollLeft;
+
+				if (direction === 1 && remainingScroll <= endThreshold) {
+					updateTestimonialControls();
+					return;
+				}
+
+				let nextScroll = Math.min(
+					Math.max(testimonialTrack.scrollLeft + distance * direction, 0),
+					maxScroll,
+				);
+
+				if (direction === 1 && maxScroll - nextScroll <= endThreshold) {
+					nextScroll = maxScroll;
+				}
+
+				if (Math.abs(nextScroll - testimonialTrack.scrollLeft) <= 1) {
+					updateTestimonialControls();
+					return;
+				}
+
+				testimonialTrack.scrollTo({
+					left: nextScroll,
+					behavior: 'smooth',
+				});
+			});
+		});
+
+		if (testimonialTrack instanceof HTMLElement) {
+			testimonialTrack.addEventListener('scroll', updateTestimonialControls, { passive: true });
+			window.addEventListener('resize', updateTestimonialControls);
+			updateTestimonialControls();
+		}
+	</script>
+</SiteLayout>

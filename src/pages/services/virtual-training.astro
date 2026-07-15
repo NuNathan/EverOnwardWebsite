@@ -1,0 +1,298 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import '../../styles/virtual-training.css';
+---
+
+<SiteLayout
+	title="Virtual Training | Ever Onward Canine"
+	description="Virtual dog training with Ever Onward Canine."
+>
+	<section class="virtual-hero" aria-labelledby="virtual-hero-title">
+		<div class="virtual-hero__frame">
+			<img
+				class="virtual-hero__background"
+				src="/images/services/unsplash-image-VehdYPKnX8Y.webp"
+				alt="Golden retriever walking on a sidewalk with a person."
+				loading="eager"
+				decoding="async"
+			/>
+
+			<div class="virtual-hero__overlay">
+				<div class="virtual-hero__content">
+					<p>Subtitle Here</p>
+					<h1 id="virtual-hero-title">
+						Cras risus ipsum, faucibus ullamcorper id, varius ac.
+					</h1>
+				</div>
+
+				<aside class="virtual-hero-card" aria-label="Virtual training note">
+					<img
+						class="virtual-hero-card__image"
+						src="/images/home/jack-russel-terrier-puppy-2W8VNP6.webp"
+						alt="Jack Russell terrier puppy resting in white bedding."
+						loading="eager"
+						decoding="async"
+					/>
+
+					<div class="virtual-hero-card__body">
+						<img
+							class="virtual-hero-card__icon"
+							src="/images/general/Paw.webp"
+							alt=""
+							loading="lazy"
+							decoding="async"
+						/>
+						<p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&rdquo;</p>
+					</div>
+				</aside>
+			</div>
+		</div>
+	</section>
+
+	<section class="virtual-intro" aria-label="Virtual training overview">
+		<div class="virtual-intro__content">
+			<h2>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+				incididunt ut labore et dolore magna aliqua.
+			</h2>
+			<p>
+				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+				commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+				dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+				culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+		</div>
+	</section>
+
+	<section class="virtual-details" aria-labelledby="virtual-details-title">
+		<img
+			class="virtual-details__background"
+			src="/images/general/AdobeStock_581231653.webp"
+			alt=""
+			loading="lazy"
+			decoding="async"
+		/>
+
+		<div class="virtual-details__card">
+			<div class="virtual-details__content">
+				<h2 id="virtual-details-title">
+					The service name would go here. Etiam id velit feugiat, scelerisq.
+				</h2>
+
+				<div class="virtual-details__accordion" aria-label="Virtual training details">
+					<details class="virtual-detail-item">
+						<summary>Who It&rsquo;s For</summary>
+						<div class="virtual-detail-item__content">
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem
+								nec lectus facilisis porta.
+							</p>
+						</div>
+					</details>
+
+					<details class="virtual-detail-item">
+						<summary>What to Expect</summary>
+						<div class="virtual-detail-item__content">
+							<p>
+								Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sessions
+								are structured, practical, and tailored to your dog.
+							</p>
+						</div>
+					</details>
+
+					<details class="virtual-detail-item">
+						<summary>Investment</summary>
+						<div class="virtual-detail-item__content">
+							<p>
+								Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+								aliquip ex ea commodo consequat.
+							</p>
+						</div>
+					</details>
+				</div>
+			</div>
+
+			<img
+				class="virtual-details__image"
+				src="/images/services/unsplash-image-cbIKeuURaq8.webp"
+				alt="Dog offering a paw to a person."
+				loading="lazy"
+				decoding="async"
+			/>
+		</div>
+	</section>
+
+	<section class="virtual-testimonials" aria-label="Client testimonials">
+		<img
+			class="virtual-testimonials__background"
+			src="/images/services/pexels-kampus-8734430.webp"
+			alt="Happy dog standing beside a person near the water."
+			loading="lazy"
+			decoding="async"
+		/>
+
+		<div class="virtual-testimonials__viewport">
+			<div class="virtual-testimonials__track" data-virtual-testimonial-track>
+				<article class="virtual-testimonial-card">
+					<p class="virtual-testimonial-card__stars" aria-label="5 out of 5 stars">
+						&#9733;&#9733;&#9733;&#9733;&#9733;
+					</p>
+					<p>
+						Porro dolor amet tetur velit modi tempora incidunt ut magnam alisuam ad mini
+						veniam nostrum exercita tionem corporis suscipit nisi ut aliquid commo autem.
+					</p>
+					<footer>- John Smith, Calgary</footer>
+				</article>
+
+				<article class="virtual-testimonial-card">
+					<p class="virtual-testimonial-card__stars" aria-label="5 out of 5 stars">
+						&#9733;&#9733;&#9733;&#9733;&#9733;
+					</p>
+					<p>
+						Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+						fugiat nulla pariatur.
+					</p>
+					<footer>- Jane Doe, Calgary</footer>
+				</article>
+
+				<article class="virtual-testimonial-card">
+					<p class="virtual-testimonial-card__stars" aria-label="5 out of 5 stars">
+						&#9733;&#9733;&#9733;&#9733;&#9733;
+					</p>
+					<p>
+						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+						ex ea commodo consequat.
+					</p>
+					<footer>- Alex Taylor, Calgary</footer>
+				</article>
+			</div>
+
+			<div class="virtual-testimonials__controls" aria-label="Testimonial controls">
+				<button type="button" data-virtual-testimonial-prev aria-label="Previous testimonial">
+					&larr;
+				</button>
+				<button type="button" data-virtual-testimonial-next aria-label="Next testimonial">
+					&rarr;
+				</button>
+			</div>
+		</div>
+	</section>
+
+	<script>
+		const testimonialTrack = document.querySelector('[data-virtual-testimonial-track]');
+		const testimonialPrev = document.querySelector('[data-virtual-testimonial-prev]');
+		const testimonialNext = document.querySelector('[data-virtual-testimonial-next]');
+
+		if (testimonialTrack && testimonialPrev && testimonialNext) {
+			const testimonialCards = Array.from(testimonialTrack.children);
+			let testimonialIndex = 0;
+
+			const scrollToTestimonial = (index, behavior = 'smooth') => {
+				const card = testimonialCards[index];
+
+				if (!card) {
+					return;
+				}
+
+				testimonialTrack.scrollTo({
+					left: card.offsetLeft - testimonialTrack.offsetLeft,
+					behavior,
+				});
+			};
+
+			testimonialPrev.addEventListener('click', () => {
+				testimonialIndex =
+					(testimonialIndex - 1 + testimonialCards.length) % testimonialCards.length;
+				scrollToTestimonial(testimonialIndex);
+			});
+
+			testimonialNext.addEventListener('click', () => {
+				testimonialIndex = (testimonialIndex + 1) % testimonialCards.length;
+				scrollToTestimonial(testimonialIndex);
+			});
+
+			window.addEventListener('resize', () => scrollToTestimonial(testimonialIndex, 'auto'));
+		}
+	</script>
+
+	<section class="virtual-process" aria-labelledby="virtual-process-title">
+		<div class="virtual-process__intro">
+			<div>
+				<p class="virtual-process__eyebrow">How It Works</p>
+				<h2 id="virtual-process-title">
+					Mauris vitae quam in justo dictum sodales. In eget tortor a nunc vehic.
+				</h2>
+			</div>
+
+			<div class="virtual-process__copy">
+				<p>
+					Mauris vitae quam in justo dictum sodales. In eget tortor a nunc vehicula tempor.
+					Nam ac tincidunt ipsum, eget. Nam tempor finibus lorem.
+				</p>
+				<p>
+					Mauris vitae quam in justo dictum sodales. In eget tortor a nunc vehicula tempor.
+					Nam ac tincidunt ipsum, eget. Nam tempor finibus lorem.
+				</p>
+			</div>
+		</div>
+
+		<div class="virtual-process__steps" aria-label="Virtual training process steps">
+			<article class="virtual-process-card">
+				<img src="/images/general/Paw.webp" alt="" loading="lazy" decoding="async" />
+				<h3>Step One</h3>
+				<p>
+					Duis non quam et nisi tincidunt fermentum. Pellentesque habitant morbi tristique
+					senectus et netus et malesuada.
+				</p>
+			</article>
+
+			<article class="virtual-process-card">
+				<img src="/images/general/Paw.webp" alt="" loading="lazy" decoding="async" />
+				<h3>Step Two</h3>
+				<p>
+					Duis non quam et nisi tincidunt fermentum. Pellentesque habitant morbi tristique
+					senectus et netus et malesuada.
+				</p>
+			</article>
+
+			<article class="virtual-process-card">
+				<img src="/images/general/Paw.webp" alt="" loading="lazy" decoding="async" />
+				<h3>Step Three</h3>
+				<p>
+					Duis non quam et nisi tincidunt fermentum. Pellentesque habitant morbi tristique
+					senectus et netus et malesuada.
+				</p>
+			</article>
+
+			<article class="virtual-process-card">
+				<img src="/images/general/Paw.webp" alt="" loading="lazy" decoding="async" />
+				<h3>Step Four</h3>
+				<p>
+					Duis non quam et nisi tincidunt fermentum. Pellentesque habitant morbi tristique
+					senectus et netus et malesuada.
+				</p>
+			</article>
+		</div>
+	</section>
+
+	<section class="faq-cta" aria-labelledby="virtual-cta-title">
+		<div class="faq-cta__frame">
+			<img
+				class="faq-cta__image"
+				src="/images/services/pexels-jozef-feher-356581-10568857.webp"
+				alt="Brown dog running through grass."
+				loading="lazy"
+				decoding="async"
+			/>
+
+			<div class="faq-cta__overlay">
+				<p>Let&rsquo;s Get Started</p>
+				<h2 id="virtual-cta-title">
+					Mauris vitae quam in justo dictum sodales. In eget tortor a nunc vehic. Donec et
+					urna vel risus feugiat pharetra. Proin id lacus.
+				</h2>
+				<a class="faq-cta__button" href="/contact">Enroll Now</a>
+			</div>
+		</div>
+	</section>
+</SiteLayout>

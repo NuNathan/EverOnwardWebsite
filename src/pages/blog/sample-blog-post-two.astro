@@ -1,0 +1,53 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import '../../styles/blog-post.css';
+---
+
+<SiteLayout
+	title="Sample Blog Post Two | Ever Onward Canine"
+	description="Sample blog post from Ever Onward Canine."
+>
+	<article class="blog-article">
+		<header class="blog-article__header">
+			<time datetime="2026-04-09">Apr 9</time>
+			<h1>Sample Blog Post Two</h1>
+		</header>
+
+		<div class="blog-article__body">
+			<img
+				class="blog-article__image"
+				src="/images/home/jack-russel-terrier-puppy-2W8VNP6.webp"
+				alt="Jack Russell terrier puppy resting in white bedding."
+				loading="eager"
+				decoding="async"
+			/>
+
+			<div class="blog-article__content">
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+					incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+					exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+					irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+					pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+					deserunt mollit anim id est laborum.
+				</p>
+
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+					incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+					exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+					irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+					pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+					deserunt mollit anim id est laborum.
+				</p>
+			</div>
+		</div>
+	</article>
+
+	<nav class="blog-post-nav" aria-label="Blog post navigation">
+		<a class="blog-post-nav__link blog-post-nav__link--previous" href="/blog/sample-blog-post-one">
+			<span aria-hidden="true">&larr;</span>
+			<span>Sample Blog Post One</span>
+		</a>
+	</nav>
+</SiteLayout>
