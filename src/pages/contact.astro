@@ -1,6 +1,14 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { fetchStrapi, strapiMediaUrl } from '../lib/strapi';
 import '../styles/contact.css';
+
+const { data: page } = await fetchStrapi('/contact-page', {
+	populate: 'heroImage,contactImage,serviceOptions',
+});
+
+const heroImage = strapiMediaUrl(page?.heroImage?.url);
+const contactImage = strapiMediaUrl(page?.contactImage?.url);
 ---
 
 <SiteLayout
@@ -10,17 +18,14 @@ import '../styles/contact.css';
 	<section class="contact-hero" aria-labelledby="contact-hero-title">
 		<img
 			class="contact-hero__image"
-			src="/images/general/AdobeStock_581231653.webp"
+			src={heroImage}
 			alt=""
 			loading="eager"
 			decoding="async"
 		/>
 
 		<div class="contact-hero__content">
-			<h1 id="contact-hero-title">
-				Let&rsquo;s work together to bring out the best in your pup&mdash;and give you the tools
-				to lead with confidence. I can&rsquo;t wait to connect with you.
-			</h1>
+			<h1 id="contact-hero-title">{page?.heroHeading}</h1>
 		</div>
 
 		<div class="contact-hero__bar" aria-hidden="true"></div>
@@ -29,13 +34,15 @@ import '../styles/contact.css';
 	<section class="contact-form-section" aria-labelledby="contact-form-title">
 		<div class="contact-form-section__media">
 			<div class="contact-form-section__image-wrap">
-				<img
-					class="contact-form-section__image"
-					src="/images/contact/pexels-karola-g-5426878.webp"
-					alt="Husky sitting beside a person indoors."
-					loading="lazy"
-					decoding="async"
-				/>
+				{contactImage && (
+					<img
+						class="contact-form-section__image"
+						src={contactImage}
+						alt=""
+						loading="lazy"
+						decoding="async"
+					/>
+				)}
 
 				<img
 					class="contact-form-section__submark"
@@ -47,23 +54,23 @@ import '../styles/contact.css';
 			</div>
 
 			<div class="contact-form-section__details">
-				<p>Christina Campbell, <em>Owner, Coach &amp; Trainer</em></p>
-				<p><em>Location Information</em></p>
-				<p><em>Contact Information</em></p>
+				{page?.contactName && <p>{page.contactName}{page?.contactTitle ? `, ${page.contactTitle}` : ''}</p>}
+				{page?.contactLocation && <p><em>{page.contactLocation}</em></p>}
+				{page?.contactInfo && <p><em>{page.contactInfo}</em></p>}
 			</div>
 		</div>
 
-		<form class="contact-form" action="/contact" method="post">
+		<form class="contact-form" id="contact-form">
 			<fieldset class="contact-form__fieldset">
 				<legend id="contact-form-title">Name</legend>
 				<div class="contact-form__name-grid">
 					<label>
 						<span>First Name <small>(required)</small></span>
-						<input type="text" name="first-name" autocomplete="given-name" required />
+						<input type="text" name="firstName" autocomplete="given-name" required />
 					</label>
 					<label>
 						<span>Last Name <small>(required)</small></span>
-						<input type="text" name="last-name" autocomplete="family-name" required />
+						<input type="text" name="lastName" autocomplete="family-name" required />
 					</label>
 				</div>
 			</fieldset>
@@ -79,39 +86,63 @@ import '../styles/contact.css';
 			</label>
 
 			<label>
-				<span>Location <small>(required)</small></span>
-				<textarea name="location" rows="5" required></textarea>
+				<span>Location</span>
+				<textarea name="location" rows="5"></textarea>
 			</label>
 
 			<label>
-				<span>Dog&rsquo;s Name, Breed and Age <small>(required)</small></span>
-				<textarea name="dog-details" rows="5" required></textarea>
+				<span>Dog&rsquo;s Name, Breed and Age</span>
+				<textarea name="dogDetails" rows="5"></textarea>
 			</label>
 
 			<label>
 				<span>
 					Briefly describe the challenges and / or goals you have with your dog
-					<small>(required)</small>
 				</span>
-				<textarea name="goals" rows="5" required></textarea>
+				<textarea name="goals" rows="5"></textarea>
 			</label>
 
 			<label>
 				<span>Which services are you interested in?</span>
-				<select name="service-interest">
+				<select name="serviceInterest">
 					<option value="">Select an option</option>
-					<option value="virtual-training">Virtual training</option>
-					<option value="puppy-foundations">Puppy foundations</option>
-					<option value="behavior-consultation">Behavior consultation</option>
+					{page?.serviceOptions?.map((opt: any) => (
+						<option value={opt.value}>{opt.label}</option>
+					))}
 				</select>
 			</label>
 
 			<label>
-				<span>How did you hear about us? <small>(required)</small></span>
-				<input type="text" name="referral-source" required />
+				<span>How did you hear about us?</span>
+				<input type="text" name="referralSource" />
 			</label>
 
 			<button class="contact-form__submit" type="submit">Submit</button>
 		</form>
 	</section>
+
+	<script>
+		const contactForm = document.getElementById('contact-form');
+		contactForm?.addEventListener('submit', async (e) => {
+			e.preventDefault();
+			const form = e.target as HTMLFormElement;
+			const formData = new FormData(form);
+			const body = Object.fromEntries(formData.entries());
+
+			try {
+				const res = await fetch(`${import.meta.env.PUBLIC_STRAPI_URL || ''}/api/contact-submissions`, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(body),
+				});
+				if (res.ok) {
+					window.location.href = '/contact/thank-you';
+				} else {
+					alert('Something went wrong. Please try again.');
+				}
+			} catch {
+				alert('Something went wrong. Please try again.');
+			}
+		});
+	</script>
 </SiteLayout>

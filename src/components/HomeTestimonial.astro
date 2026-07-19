@@ -1,31 +1,34 @@
 ---
 interface Props {
 	imageSrc: string;
-	imageAlt: string;
+	imageAlt?: string;
 	quote: string;
-	cite: string;
-	width?: number;
-	height?: number;
+	name: string;
+	location?: string;
+	rating?: number;
 }
 
-const { imageSrc, imageAlt, quote, cite, width, height } = Astro.props;
+const { imageSrc, imageAlt, quote, name, location, rating = 5 } = Astro.props;
+
+const fullStars = Math.floor(rating);
+const hasHalf = rating - fullStars >= 0.5;
+const starsLabel = `${rating} out of 5 stars`;
+const stars = '★'.repeat(fullStars) + (hasHalf ? '½' : '');
 ---
 
 <article class="home-testimonial">
 	<img
 		class="home-testimonial__image"
 		src={imageSrc}
-		width={width}
-		height={height}
-		alt={imageAlt}
+		alt={imageAlt || ''}
 		loading="lazy"
 		decoding="async"
 	/>
 	<div class="home-testimonial__quote">
-		<p class="home-testimonial__stars" aria-label="5 out of 5 stars">â˜…â˜…â˜…â˜…â˜…</p>
+		<p class="home-testimonial__stars" aria-label={starsLabel}>{stars}</p>
 		<blockquote>
 			<p>{quote}</p>
-			<cite>{cite}</cite>
+			<cite>- {name}{location ? `, ${location}` : ''}</cite>
 		</blockquote>
 	</div>
 </article>

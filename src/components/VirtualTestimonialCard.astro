@@ -1,16 +1,23 @@
 ---
 interface Props {
 	quote: string;
-	author: string;
+	name: string;
+	location?: string;
+	rating?: number;
 }
 
-const { quote, author } = Astro.props;
+const { quote, name, location, rating = 5 } = Astro.props;
+
+const fullStars = Math.floor(rating);
+const hasHalf = rating - fullStars >= 0.5;
+const stars = '★'.repeat(fullStars) + (hasHalf ? '½' : '');
+const starsLabel = `${rating} out of 5 stars`;
 ---
 
 <article class="virtual-testimonial-card">
-	<p class="virtual-testimonial-card__stars" aria-label="5 out of 5 stars">
-		&#9733;&#9733;&#9733;&#9733;&#9733;
+	<p class="virtual-testimonial-card__stars" aria-label={starsLabel}>
+		{stars}
 	</p>
 	<p>{quote}</p>
-	<footer>{author}</footer>
+	<footer>- {name}{location ? `, ${location}` : ''}</footer>
 </article>

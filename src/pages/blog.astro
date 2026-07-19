@@ -1,30 +1,16 @@
 ---
 import BlogPostCard from '../components/BlogPostCard.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { fetchStrapi, strapiMediaUrl } from '../lib/strapi';
 import '../styles/blog.css';
 
-const posts = [
-	{
-		title: 'Sample Blog Post Two',
-		date: '4/9/26',
-		datetime: '2026-04-09',
-		excerpt:
-			'Ut non enim eleifend felis pretium feugiat. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.',
-		href: '/blog/sample-blog-post-two',
-		imageSrc: '/images/home/pexels-helenalopes-27176300.webp',
-		imageAlt: 'Brown dog resting with a person.',
-	},
-	{
-		title: 'Sample Blog Post One',
-		date: '4/1/26',
-		datetime: '2026-04-01',
-		excerpt:
-			'Ut non enim eleifend felis pretium feugiat. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.',
-		href: '/blog/sample-blog-post-one',
-		imageSrc: '/images/home/jack-russel-terrier-puppy-2W8VNP6.webp',
-		imageAlt: 'Jack Russell terrier puppy resting in white bedding.',
-	},
-];
+const { data: blogPage } = await fetchStrapi('/blog-page', { populate: 'heroImage' });
+const { data: posts } = await fetchStrapi('/blog-posts', {
+	populate: 'coverImage',
+	sort: 'publishedDate:desc',
+});
+
+const heroImage = strapiMediaUrl(blogPage?.heroImage?.url);
 ---
 
 <SiteLayout
@@ -34,14 +20,14 @@ const posts = [
 	<section class="blog-hero" aria-labelledby="blog-hero-title">
 		<img
 			class="blog-hero__image"
-			src="/images/general/AdobeStock_581231653.webp"
+			src={heroImage}
 			alt=""
 			loading="eager"
 			decoding="async"
 		/>
 
 		<div class="blog-hero__content">
-			<h1 id="blog-hero-title">The Blog</h1>
+			<h1 id="blog-hero-title">{blogPage?.heroHeading || 'The Blog'}</h1>
 			<img
 				class="blog-hero__paw"
 				src="/images/general/Paw.webp"
@@ -53,6 +39,21 @@ const posts = [
 	</section>
 
 	<section class="blog-posts" aria-label="Blog posts">
-		{posts.map((post) => <BlogPostCard {...post} />)}
+		{(posts as any[])?.map((post: any) => {
+			const date = new Date(post.publishedDate);
+			const formatted = `${date.getMonth() + 1}/${date.getDate()}/${String(date.getFullYear()).slice(2)}`;
+
+			return (
+				<BlogPostCard
+					title={post.title}
+					date={formatted}
+					datetime={post.publishedDate}
+					excerpt={post.excerpt || ''}
+					href={`/blog/${post.slug}`}
+					imageSrc={strapiMediaUrl(post.coverImage?.url)}
+					imageAlt={post.coverImageAlt || ''}
+				/>
+			);
+		})}
 	</section>
 </SiteLayout>

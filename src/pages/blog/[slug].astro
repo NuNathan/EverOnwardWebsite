@@ -1,0 +1,48 @@
+---
+import BlogArticle from '../../components/BlogArticle.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { fetchStrapi, strapiMediaUrl } from '../../lib/strapi';
+import '../../styles/blog-post.css';
+
+export async function getStaticPaths() {
+	const { data: posts } = await fetchStrapi('/blog-posts', {
+		fields: 'slug',
+	});
+
+	return (posts as any[]).map((post: any) => ({
+		params: { slug: post.slug },
+	}));
+}
+
+const { slug } = Astro.params;
+
+const { data: posts } = await fetchStrapi('/blog-posts', {
+	'filters[slug][$eq]': slug!,
+	populate: 'coverImage',
+});
+
+const post = (posts as any[])?.[0];
+
+if (!post) {
+	return Astro.redirect('/blog');
+}
+
+const coverImage = strapiMediaUrl(post.coverImage?.url);
+const date = new Date(post.publishedDate);
+const formatted = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+---
+
+<SiteLayout
+	title={`${post.title} | Ever Onward Canine`}
+	description={post.excerpt || ''}
+>
+	<BlogArticle
+		title={post.title}
+		date={formatted}
+		datetime={post.publishedDate}
+		imageSrc={coverImage}
+		imageAlt={post.coverImageAlt || ''}
+	>
+		<Fragment set:html={post.content} />
+	</BlogArticle>
+</SiteLayout>

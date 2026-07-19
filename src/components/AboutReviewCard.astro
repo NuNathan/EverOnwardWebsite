@@ -1,25 +1,31 @@
 ---
 interface Props {
 	imageSrc: string;
-	imageAlt: string;
-	text: string;
-	meta: string;
+	imageAlt?: string;
+	quote: string;
+	name: string;
+	location?: string;
+	rating?: number;
 }
 
-const { imageSrc, imageAlt, text, meta } = Astro.props;
+const { imageSrc, imageAlt, quote, name, location, rating = 5 } = Astro.props;
+
+const fullStars = Math.floor(rating);
+const hasHalf = rating - fullStars >= 0.5;
+const stars = '★'.repeat(fullStars) + (hasHalf ? '½' : '');
 ---
 
 <article class="about-review-card">
 	<img
 		class="about-review-card__image"
 		src={imageSrc}
-		alt={imageAlt}
+		alt={imageAlt || ''}
 		loading="lazy"
 		decoding="async"
 	/>
 
 	<div class="about-review-card__content">
-		<p>{text}</p>
-		<p class="about-review-card__meta">{meta}</p>
+		<p>{quote}</p>
+		<p class="about-review-card__meta">{stars} - {name}{location ? `, ${location}` : ''}</p>
 	</div>
 </article>

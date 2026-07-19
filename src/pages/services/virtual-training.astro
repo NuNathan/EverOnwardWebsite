@@ -4,51 +4,20 @@ import CtaBanner from '../../components/CtaBanner.astro';
 import VirtualProcessCard from '../../components/VirtualProcessCard.astro';
 import VirtualTestimonialCard from '../../components/VirtualTestimonialCard.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
+import { fetchStrapi, strapiMediaUrl } from '../../lib/strapi';
 import '../../styles/cta.css';
 import '../../styles/virtual-training.css';
 
-const detailItems = [
-	{
-		summary: 'Who It’s For',
-		text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem nec lectus facilisis porta.',
-	},
-	{
-		summary: 'What to Expect',
-		text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sessions are structured, practical, and tailored to your dog.',
-	},
-	{
-		summary: 'Investment',
-		text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-	},
-];
+const { data: page } = await fetchStrapi('/virtual-training-page', {
+	populate: 'heroBackgroundImage,heroCardImage,detailsBackgroundImage,detailsImage,detailItems,testimonialsBackgroundImage,reviews,reviews.image,processSteps,ctaBackgroundImage',
+});
 
-const testimonials = [
-	{
-		quote:
-			'Porro dolor amet tetur velit modi tempora incidunt ut magnam alisuam ad mini veniam nostrum exercita tionem corporis suscipit nisi ut aliquid commo autem.',
-		author: '- John Smith, Calgary',
-	},
-	{
-		quote:
-			'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-		author: '- Jane Doe, Calgary',
-	},
-	{
-		quote:
-			'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-		author: '- Alex Taylor, Calgary',
-	},
-];
-
-const processSteps = [
-	'Step One',
-	'Step Two',
-	'Step Three',
-	'Step Four',
-].map((title) => ({
-	title,
-	text: 'Duis non quam et nisi tincidunt fermentum. Pellentesque habitant morbi tristique senectus et netus et malesuada.',
-}));
+const heroBackground = strapiMediaUrl(page?.heroBackgroundImage?.url);
+const heroCardImage = strapiMediaUrl(page?.heroCardImage?.url);
+const detailsBackground = strapiMediaUrl(page?.detailsBackgroundImage?.url);
+const detailsImage = strapiMediaUrl(page?.detailsImage?.url);
+const testimonialsBackground = strapiMediaUrl(page?.testimonialsBackgroundImage?.url);
+const ctaBackground = strapiMediaUrl(page?.ctaBackgroundImage?.url);
 ---
 
 <SiteLayout
@@ -59,28 +28,28 @@ const processSteps = [
 		<div class="virtual-hero__frame">
 			<img
 				class="virtual-hero__background"
-				src="/images/services/unsplash-image-VehdYPKnX8Y.webp"
-				alt="Golden retriever walking on a sidewalk with a person."
+				src={heroBackground}
+				alt=""
 				loading="eager"
 				decoding="async"
 			/>
 
 			<div class="virtual-hero__overlay">
 				<div class="virtual-hero__content">
-					<p>Subtitle Here</p>
-					<h1 id="virtual-hero-title">
-						Cras risus ipsum, faucibus ullamcorper id, varius ac.
-					</h1>
+					<p>{page?.heroSubtitle}</p>
+					<h1 id="virtual-hero-title">{page?.heroHeading}</h1>
 				</div>
 
 				<aside class="virtual-hero-card" aria-label="Virtual training note">
-					<img
-						class="virtual-hero-card__image"
-						src="/images/home/jack-russel-terrier-puppy-2W8VNP6.webp"
-						alt="Jack Russell terrier puppy resting in white bedding."
-						loading="eager"
-						decoding="async"
-					/>
+					{heroCardImage && (
+						<img
+							class="virtual-hero-card__image"
+							src={heroCardImage}
+							alt=""
+							loading="eager"
+							decoding="async"
+						/>
+					)}
 
 					<div class="virtual-hero-card__body">
 						<img
@@ -90,7 +59,7 @@ const processSteps = [
 							loading="lazy"
 							decoding="async"
 						/>
-						<p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&rdquo;</p>
+						<p>{page?.heroCardText}</p>
 					</div>
 				</aside>
 			</div>
@@ -99,75 +68,72 @@ const processSteps = [
 
 	<section class="virtual-intro" aria-label="Virtual training overview">
 		<div class="virtual-intro__content">
-			<h2>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-				incididunt ut labore et dolore magna aliqua.
-			</h2>
-			<p>
-				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-				commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-				dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-				culpa qui officia deserunt mollit anim id est laborum.
-			</p>
+			<h2>{page?.introHeading}</h2>
+			<p>{page?.introBody}</p>
 		</div>
 	</section>
 
 	<section class="virtual-details" aria-labelledby="virtual-details-title">
-		<img
-			class="virtual-details__background"
-			src="/images/general/AdobeStock_581231653.webp"
-			alt=""
-			loading="lazy"
-			decoding="async"
-		/>
-
-		<div class="virtual-details__card">
-			<div class="virtual-details__content">
-				<h2 id="virtual-details-title">
-					The service name would go here. Etiam id velit feugiat, scelerisq.
-				</h2>
-
-				<div class="virtual-details__accordion" aria-label="Virtual training details">
-					{
-						detailItems.map((item) => (
-							<AccordionItem
-								itemClass="virtual-detail-item"
-								contentClass="virtual-detail-item__content"
-								summary={item.summary}
-							>
-								<p>{item.text}</p>
-							</AccordionItem>
-						))
-					}
-				</div>
-			</div>
-
+		{detailsBackground && (
 			<img
-				class="virtual-details__image"
-				src="/images/services/unsplash-image-cbIKeuURaq8.webp"
-				alt="Dog offering a paw to a person."
+				class="virtual-details__background"
+				src={detailsBackground}
+				alt=""
 				loading="lazy"
 				decoding="async"
 			/>
+		)}
+
+		<div class="virtual-details__card">
+			<div class="virtual-details__content">
+				<h2 id="virtual-details-title">{page?.detailsHeading}</h2>
+
+				<div class="virtual-details__accordion" aria-label="Virtual training details">
+					{page?.detailItems?.map((item: any) => (
+						<AccordionItem
+							itemClass="virtual-detail-item"
+							contentClass="virtual-detail-item__content"
+							summary={item.summary}
+						>
+							<p>{item.text}</p>
+						</AccordionItem>
+					))}
+				</div>
+			</div>
+
+			{detailsImage && (
+				<img
+					class="virtual-details__image"
+					src={detailsImage}
+					alt=""
+					loading="lazy"
+					decoding="async"
+				/>
+			)}
 		</div>
 	</section>
 
 	<section class="virtual-testimonials" aria-label="Client testimonials">
-		<img
-			class="virtual-testimonials__background"
-			src="/images/services/pexels-kampus-8734430.webp"
-			alt="Happy dog standing beside a person near the water."
-			loading="lazy"
-			decoding="async"
-		/>
+		{testimonialsBackground && (
+			<img
+				class="virtual-testimonials__background"
+				src={testimonialsBackground}
+				alt=""
+				loading="lazy"
+				decoding="async"
+			/>
+		)}
 
 		<div class="virtual-testimonials__viewport">
 			<div class="virtual-testimonials__track" data-virtual-testimonial-track>
-				{
-					testimonials.map((testimonial) => (
-						<VirtualTestimonialCard quote={testimonial.quote} author={testimonial.author} />
-					))
-				}
+				{page?.reviews?.map((review: any) => (
+					<VirtualTestimonialCard
+						quote={review.quote}
+						name={review.name}
+						location={review.location}
+						rating={review.rating}
+					/>
+				))}
 			</div>
 
 			<div class="virtual-testimonials__controls" aria-label="Testimonial controls">
@@ -190,15 +156,15 @@ const processSteps = [
 			const testimonialCards = Array.from(testimonialTrack.children);
 			let testimonialIndex = 0;
 
-			const scrollToTestimonial = (index, behavior = 'smooth') => {
-				const card = testimonialCards[index];
+			const scrollToTestimonial = (index: number, behavior: ScrollBehavior = 'smooth') => {
+				const card = testimonialCards[index] as HTMLElement;
 
 				if (!card) {
 					return;
 				}
 
 				testimonialTrack.scrollTo({
-					left: card.offsetLeft - testimonialTrack.offsetLeft,
+					left: card.offsetLeft - (testimonialTrack as HTMLElement).offsetLeft,
 					behavior,
 				});
 			};
@@ -221,32 +187,29 @@ const processSteps = [
 	<section class="virtual-process" aria-labelledby="virtual-process-title">
 		<div class="virtual-process__intro">
 			<div>
-				<p class="virtual-process__eyebrow">How It Works</p>
-				<h2 id="virtual-process-title">
-					Mauris vitae quam in justo dictum sodales. In eget tortor a nunc vehic.
-				</h2>
+				<p class="virtual-process__eyebrow">{page?.processEyebrow}</p>
+				<h2 id="virtual-process-title">{page?.processHeading}</h2>
 			</div>
 
 			<div class="virtual-process__copy">
-				<p>
-					Mauris vitae quam in justo dictum sodales. In eget tortor a nunc vehicula tempor.
-					Nam ac tincidunt ipsum, eget. Nam tempor finibus lorem.
-				</p>
-				<p>
-					Mauris vitae quam in justo dictum sodales. In eget tortor a nunc vehicula tempor.
-					Nam ac tincidunt ipsum, eget. Nam tempor finibus lorem.
-				</p>
+				<p>{page?.processBody}</p>
 			</div>
 		</div>
 
 		<div class="virtual-process__steps" aria-label="Virtual training process steps">
-			{processSteps.map((step) => <VirtualProcessCard title={step.title} text={step.text} />)}
+			{page?.processSteps?.map((step: any) => (
+				<VirtualProcessCard title={step.title} text={step.text} />
+			))}
 		</div>
 	</section>
 
 	<CtaBanner
 		id="virtual-cta-title"
-		title="Mauris vitae quam in justo dictum sodales. In eget tortor a nunc vehic. Donec et urna vel risus feugiat pharetra. Proin id lacus."
+		title={page?.ctaHeading || ''}
+		imageSrc={ctaBackground}
+		eyebrow={page?.ctaEyebrow}
+		buttonHref={page?.ctaButtonLink}
+		buttonText={page?.ctaButtonText}
 		flush
 	/>
 </SiteLayout>

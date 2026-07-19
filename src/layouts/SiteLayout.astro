@@ -3,6 +3,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import '../styles/layout.css';
+import { fetchStrapi, strapiMediaUrl } from '../lib/strapi';
 
 interface Props {
 	title?: string;
@@ -13,6 +14,17 @@ const {
 	title = 'Ever Onward Canine',
 	description = 'Ever Onward Canine static website.',
 } = Astro.props;
+
+const { data: settings } = await fetchStrapi('/site-settings', { populate: '*' });
+
+const headerLogo = strapiMediaUrl(settings?.headerLogo?.url);
+const footerLogo = strapiMediaUrl(settings?.footerLogo?.url);
+const headerButtonText = settings?.headerButtonText || 'Get Started';
+const headerButtonLink = settings?.headerButtonLink || '/contact';
+const email = settings?.email || '';
+const phone = settings?.phone || '';
+const facebookUrl = settings?.facebookUrl || '';
+const instagramUrl = settings?.instagramUrl || '';
 ---
 
 <!doctype html>
@@ -34,11 +46,24 @@ const {
 	</head>
 	<body>
 		<div class="site-shell">
-			<Header />
+			<Header
+				logoSrc={headerLogo}
+				buttonText={headerButtonText}
+				buttonLink={headerButtonLink}
+				email={email}
+				facebookUrl={facebookUrl}
+				instagramUrl={instagramUrl}
+			/>
 			<main class="site-main">
 				<slot />
 			</main>
-			<Footer />
+			<Footer
+				logoSrc={footerLogo}
+				email={email}
+				phone={phone}
+				facebookUrl={facebookUrl}
+				instagramUrl={instagramUrl}
+			/>
 		</div>
 	</body>
 </html>

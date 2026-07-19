@@ -2,52 +2,16 @@
 import AboutCtaCard from '../components/AboutCtaCard.astro';
 import AboutReviewCard from '../components/AboutReviewCard.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { fetchStrapi, strapiMediaUrl } from '../lib/strapi';
 import '../styles/about.css';
 
-const reviewText =
-	'Porro dolor amet tetur velit modi tempora incidunt ut magnam alisuam ad mini veniam nostrum exercita tionem corporis suscipit nisi ut aliquid commo autem.';
+const { data: page } = await fetchStrapi('/about-page', {
+	populate: 'heroImage,founderImage,reviews,reviews.image,ctaBandImage,ctaCards',
+});
 
-const reviewCards = [
-	{
-		imageSrc: '/images/about/cute-white-dog-sitting-autumn-park.webp',
-		imageAlt: 'Small white dog sitting in a park.',
-		text: reviewText,
-		meta: 'â˜…â˜…â˜…â˜…â˜… - Jane Doe, Calgary',
-	},
-	{
-		imageSrc: '/images/home/stylish-girl-sunny-field-with-dog.webp',
-		imageAlt: 'Person sitting with a dog near water.',
-		text: reviewText,
-		meta: 'â˜…â˜…â˜…â˜…â˜… - Jane Doe, Calgary',
-	},
-	{
-		imageSrc: '/images/home/jack-russel-terrier-puppy-2W8VNP6.webp',
-		imageAlt: 'Small puppy resting on a soft blanket.',
-		text: reviewText,
-		meta: 'â˜…â˜…â˜…â˜…â˜… - Jane Doe, Calgary',
-	},
-];
-
-const ctaCards = [
-	{
-		href: '/services',
-		label: 'View services',
-		title: 'Call To Action',
-		text: 'Duis non quam et nisi tincidunt fermentum ellentesque habit.',
-	},
-	{
-		href: '/contact',
-		label: 'Contact Ever Onward Canine',
-		title: 'Call To Action',
-		text: 'Duis non quam et nisi tincidunt fermentum ellentesque habit.',
-	},
-	{
-		href: '/blog',
-		label: 'Read the blog',
-		title: 'Call To Action',
-		text: 'Duis non quam et nisi tincidunt fe rm ent um ellentesque habit.',
-	},
-];
+const heroImage = strapiMediaUrl(page?.heroImage?.url);
+const founderImage = strapiMediaUrl(page?.founderImage?.url);
+const ctaBandImage = strapiMediaUrl(page?.ctaBandImage?.url);
 ---
 
 <SiteLayout
@@ -58,14 +22,14 @@ const ctaCards = [
 		<div class="about-hero__frame">
 			<img
 				class="about-hero__image"
-				src="/images/about/pexels-karola-g-5426875.webp"
-				alt="Husky resting beside a person on a sofa."
+				src={heroImage}
+				alt=""
 				loading="eager"
 				decoding="async"
 			/>
 
 			<div class="about-hero__overlay">
-				<h1>Mauris vitae quam in justo dictum sodales. In eget tortor a nun.</h1>
+				<h1>{page?.heroHeading}</h1>
 			</div>
 		</div>
 	</section>
@@ -75,8 +39,8 @@ const ctaCards = [
 			<div class="about-founder__image-frame">
 				<img
 					class="about-founder__image"
-					src="/images/about/pexels-monique-witlam-3233203-11454760.webp"
-					alt="Small black and white dog looking up."
+					src={founderImage}
+					alt=""
 					loading="lazy"
 					decoding="async"
 				/>
@@ -90,33 +54,28 @@ const ctaCards = [
 				/>
 			</div>
 
-			<p class="about-founder__caption">include headshot</p>
+			{page?.founderCaption && <p class="about-founder__caption">{page.founderCaption}</p>}
 		</div>
 
 		<div class="about-founder__content">
-			<p class="about-founder__eyebrow">Meet Christina</p>
-			<h2 id="about-founder-title">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-				incididunt ut labore et dolore magna aliqua.
-			</h2>
-			<p>
-				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-				commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-				dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-				culpa qui officia deserunt mollit anim id est laborum.
-			</p>
-			<p>
-				Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-				commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-				dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-				culpa qui officia deserunt mollit anim id est laborum.
-			</p>
+			<p class="about-founder__eyebrow">{page?.founderEyebrow}</p>
+			<h2 id="about-founder-title">{page?.founderHeading}</h2>
+			<Fragment set:html={page?.founderBody} />
 		</div>
 	</section>
 
 	<section class="about-reviews" aria-label="Client reviews">
 		<div class="about-reviews__track" id="about-reviews-track">
-			{reviewCards.map((review) => <AboutReviewCard {...review} />)}
+			{page?.reviews?.map((review: any) => (
+				<AboutReviewCard
+					imageSrc={strapiMediaUrl(review.image?.url)}
+					imageAlt={review.imageAlt}
+					quote={review.quote}
+					name={review.name}
+					location={review.location}
+					rating={review.rating}
+				/>
+			))}
 		</div>
 
 		<div class="about-reviews__controls" aria-label="Review controls">
@@ -182,16 +141,25 @@ const ctaCards = [
 	</script>
 
 	<section class="about-cta-band" aria-label="Next steps">
-		<img
-			class="about-cta-band__image"
-			src="/images/about/cute-white-dog-sitting-autumn-park.webp"
-			alt="White dog sitting on an autumn path."
-			loading="lazy"
-			decoding="async"
-		/>
+		{ctaBandImage && (
+			<img
+				class="about-cta-band__image"
+				src={ctaBandImage}
+				alt=""
+				loading="lazy"
+				decoding="async"
+			/>
+		)}
 
 		<div class="about-cta-band__cards">
-			{ctaCards.map((card) => <AboutCtaCard {...card} />)}
+			{page?.ctaCards?.map((card: any) => (
+				<AboutCtaCard
+					href={card.buttonLink}
+					label={card.buttonLabel}
+					title={card.title}
+					text={card.text}
+				/>
+			))}
 		</div>
 	</section>
 </SiteLayout>

@@ -1,4 +1,15 @@
 ---
+interface Props {
+	logoSrc: string;
+	buttonText: string;
+	buttonLink: string;
+	email: string;
+	facebookUrl: string;
+	instagramUrl: string;
+}
+
+const { logoSrc, buttonText, buttonLink, email, facebookUrl, instagramUrl } = Astro.props;
+
 const navLinks = [
 	{ href: '/', label: 'Home' },
 	{ href: '/about', label: 'About' },
@@ -30,7 +41,7 @@ const isActiveLink = (href: string) => {
 	<div class="site-header__inner">
 		<a class="site-header__brand" href="/" aria-label="Ever Onward Canine home">
 			<img
-				src="/images/layout/header-logo.webp"
+				src={logoSrc}
 				alt="Ever Onward Canine"
 				loading="eager"
 				decoding="async"
@@ -82,35 +93,41 @@ const isActiveLink = (href: string) => {
 			</nav>
 
 			<div class="site-header__actions">
-				<a class="site-header__icon-link" href="https://facebook.com" aria-label="Facebook">
-					<svg viewBox="0 0 24 24" aria-hidden="true">
-						<path
-							d="M13.5 8.5V6.8c0-.8.5-1.3 1.3-1.3H16V2.5h-2.2C11 2.5 9.9 4 9.9 6.5v2H7.5v3h2.4v10h3.6v-10H16l.4-3Z"
-							fill="currentColor"
-						/>
-					</svg>
-				</a>
+				{facebookUrl && (
+					<a class="site-header__icon-link" href={facebookUrl} aria-label="Facebook">
+						<svg viewBox="0 0 24 24" aria-hidden="true">
+							<path
+								d="M13.5 8.5V6.8c0-.8.5-1.3 1.3-1.3H16V2.5h-2.2C11 2.5 9.9 4 9.9 6.5v2H7.5v3h2.4v10h3.6v-10H16l.4-3Z"
+								fill="currentColor"
+							/>
+						</svg>
+					</a>
+				)}
 
-				<a class="site-header__icon-link" href="mailto:email@example.com" aria-label="Email">
-					<svg viewBox="0 0 24 24" aria-hidden="true">
-						<path
-							d="M3 6.5h18v11H3Zm1.8 1.5 7.2 5.7L19.2 8Zm14.7 8V9.3l-6.7 5.3a1.3 1.3 0 0 1-1.6 0L4.5 9.3V16Z"
-							fill="currentColor"
-						/>
-					</svg>
-				</a>
+				{email && (
+					<a class="site-header__icon-link" href={`mailto:${email}`} aria-label="Email">
+						<svg viewBox="0 0 24 24" aria-hidden="true">
+							<path
+								d="M3 6.5h18v11H3Zm1.8 1.5 7.2 5.7L19.2 8Zm14.7 8V9.3l-6.7 5.3a1.3 1.3 0 0 1-1.6 0L4.5 9.3V16Z"
+								fill="currentColor"
+							/>
+						</svg>
+					</a>
+				)}
 
-				<a class="site-header__icon-link" href="https://instagram.com" aria-label="Instagram">
-					<svg viewBox="0 0 24 24" aria-hidden="true">
-						<path
-							d="M7.2 3h9.6A4.2 4.2 0 0 1 21 7.2v9.6a4.2 4.2 0 0 1-4.2 4.2H7.2A4.2 4.2 0 0 1 3 16.8V7.2A4.2 4.2 0 0 1 7.2 3Zm0 1.8A2.4 2.4 0 0 0 4.8 7.2v9.6a2.4 2.4 0 0 0 2.4 2.4h9.6a2.4 2.4 0 0 0 2.4-2.4V7.2a2.4 2.4 0 0 0-2.4-2.4Zm10.2 1.3a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2ZM12 7.7A4.3 4.3 0 1 1 7.7 12 4.3 4.3 0 0 1 12 7.7Zm0 1.8A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Z"
-							fill="currentColor"
-						/>
-					</svg>
-				</a>
+				{instagramUrl && (
+					<a class="site-header__icon-link" href={instagramUrl} aria-label="Instagram">
+						<svg viewBox="0 0 24 24" aria-hidden="true">
+							<path
+								d="M7.2 3h9.6A4.2 4.2 0 0 1 21 7.2v9.6a4.2 4.2 0 0 1-4.2 4.2H7.2A4.2 4.2 0 0 1 3 16.8V7.2A4.2 4.2 0 0 1 7.2 3Zm0 1.8A2.4 2.4 0 0 0 4.8 7.2v9.6a2.4 2.4 0 0 0 2.4 2.4h9.6a2.4 2.4 0 0 0 2.4-2.4V7.2a2.4 2.4 0 0 0-2.4-2.4Zm10.2 1.3a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2ZM12 7.7A4.3 4.3 0 1 1 7.7 12 4.3 4.3 0 0 1 12 7.7Zm0 1.8A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Z"
+								fill="currentColor"
+							/>
+						</svg>
+					</a>
+				)}
 			</div>
 
-			<a class="button-link" href="/contact">Get Started</a>
+			<a class="button-link" href={buttonLink}>{buttonText}</a>
 		</div>
 	</div>
 </header>
